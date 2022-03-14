@@ -1,7 +1,5 @@
-import { BaseEntity } from "src/common/entities/base.entity";
-import { Entity } from "typeorm";
+import { BaseEntity } from 'src/common/entities/base.entity';
+import { Entity } from 'typeorm';
 
 @Entity()
-export class Customer extends BaseEntity {
-    
-}
+export class Customer extends BaseEntity {}
