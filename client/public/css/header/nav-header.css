@@ -1,0 +1,31 @@
+.nav-header {
+    background-color: var(--primary-gray);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 37px;
+    padding: 0 62px;
+    color: var(--primary-white);
+}
+
+.header-contact {
+    display: flex;
+}
+
+.header-contact .contact-item {
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.header-contact .contact-item:last-child {
+    margin-left: 20px;
+}
+
+.header-contact .contact-item .contact-icon {
+    margin-right: 10px;
+}
+
+.nav-header .header-social .social-icon {
+    margin-left: 10px;
+}
