@@ -1,0 +1,13 @@
+.footer-brand {
+    text-align: center;
+}
+
+.footer-brand .brand-name {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.footer-brand .brand-slogan {
+    font-size: 28px;
+    font-weight: 500;
+}

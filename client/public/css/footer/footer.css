@@ -1,0 +1,20 @@
+@import url(./footer-brand.css);
+@import url(./footer-contact.css);
+@import url(./footer-menu.css);
+@import url(./footer-facebook.css);
+
+.footer-info {
+    background-color: var(--primary-gray);
+    padding: 31px 62px;
+    color: var(--primary-white);
+    display: flex;
+    justify-content: space-between;
+}
+
+.footer-copyright {
+    background-color: var(--primary-black);
+    color: var(--primary-white);
+    text-align: center;
+    height: 48px;
+    line-height: 48px;
+}
