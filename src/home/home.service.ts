@@ -15,7 +15,7 @@ export class HomeService {
       this.contactService.get({
         select: ['facebook', 'instagram', 'linkedin'],
       }),
-      this.aboutUsService.get({ select: ['introduction', 'logo', 'values'] }),
+      this.aboutUsService.get({ select: ['goals', 'introduction'] }),
     ]);
     return { contact, aboutUs };
   }

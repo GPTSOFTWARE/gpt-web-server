@@ -1,0 +1,10 @@
+@import url(./home-brand.css);
+@import url(./home-info.css);
+@import url(./home-social.css);
+
+.home-intro {
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
