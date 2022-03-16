@@ -42,7 +42,7 @@ transform: translateY(-42px);
     width: 174px;
     height: 174px;
 }
-.contact-title{
+.contact-logo .contact-name{
     font-size: 48px;
     text-transform: uppercase;
 }
@@ -88,6 +88,7 @@ transform: translateY(-42px);
     font-size: 16px;
     width: 500px;
     height: 153px;
+    box-sizing: border-box;
 }
 .contact-info{
     display: flex;
@@ -110,6 +111,7 @@ line-height: 45px;
     padding: 24px 7px;
     font-size: 16px;
     margin: 6px 0;
+    box-sizing: border-box;
 }
 .contact-form form{
     display: flex;
@@ -132,6 +134,7 @@ line-height: 45px;
     font-size: 10px;
     border: none;
     font-weight: 700;
+    cursor: pointer;
 }
 .address-map{
    
@@ -141,90 +144,4 @@ line-height: 45px;
    margin: 0 auto;
    border-radius: 5px;
 
-}
-footer{
-    padding: 0px 0 0 0;
-    background-color: #000;
-    
-}
-.footer__container{
-    justify-content: space-around;
-    background-color: #616161;
- color: #fff;
-    width: 100;
-    padding: 30px 0px 30px 0px;
-    box-sizing: border-box;
-    display: flex;
-
-}
-.footer-control{
-    display: flex;
-    flex-direction: column;
-  
-}
-.footer-logo img{
-    width: 251px;
-    height: 251px;
-}
-
-.footer-logo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-.footer-control.cotr-1 h3{
-
-    font-size: 48px;
-    text-transform: uppercase; 
-    margin-bottom: 0;
-
-   
-}
-.cotr-1 p{
-    font-size: 28.34px;
-}
-
-.cotr-2{
-    width: 350px;
-    /* margin-left: 120px; */
-}
-
-.cotr-2 p{
-    font-size: 16px;
-    margin-bottom: 7px;
-}
-.cotr-2 img{
-    height: 18.003509521484375px;
-    width: 14.000036239624023px;
-    left: 5px;
-    top: 2.9964599609375px; 
-    margin-right: 7px;
-
-
-}
-.cotr-3{
-   
-    line-height: 35px;
-}
-.cotr-3 a{
-    color: #fff;
-    font-weight: 300;
-    font-size: 16px;
-}
-.footer-control h3{
-    margin-bottom: 15px;
-}
-.footer-control h4{
-    margin-bottom: 15px;
-    font-size: 24px;
-    font-weight: 500;
-}
-
-.the-end{
-    width: 100%;
-    text-align: center;
-    color: #fff;
-    height: 48px;
-    font-size: 16px;
 }
