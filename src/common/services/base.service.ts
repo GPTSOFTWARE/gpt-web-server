@@ -1,5 +1,5 @@
 import { NotFoundException } from '@nestjs/common';
-import { FindOneOptions, Repository, Table } from 'typeorm';
+import { FindOneOptions, Repository } from 'typeorm';
 
 export class BaseService<T> {
   constructor(protected repo: Repository<T>) {}

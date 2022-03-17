@@ -3,7 +3,7 @@ import { Column, Entity } from 'typeorm';
 
 @Entity()
 export class Contact extends BaseEntity {
-  @Column()
+  @Column({ type: 'text' })
   address: string;
 
   @Column()
