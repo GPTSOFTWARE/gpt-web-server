@@ -9,13 +9,13 @@ export class AboutUs extends BaseEntity {
   @Column()
   logo: string;
 
-  @Column()
+  @Column({ type: 'text' })
   introduction: string;
 
-  @Column()
+  @Column({ type: 'text' })
   goals: string;
 
-  @Column()
+  @Column({ type: 'text' })
   values: string;
 
   @OneToMany(() => Personnel, (personnel) => personnel.aboutUs)
