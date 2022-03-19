@@ -6,7 +6,7 @@ export class HomeController {
   constructor(private homeService: HomeService) {}
 
   @Get()
-  @Render('home/index')
+  // @Render('home/index')
   async get() {
     return this.homeService.get();
   }
