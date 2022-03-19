@@ -1,0 +1,26 @@
+.card-contact{
+    margin-top: 60px;
+    margin-bottom: 20px;
+    padding:100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 388px;
+    background: linear-gradient(130.51deg, #FFE600 15.72%, #EB9400 84.94%);
+    border-radius: 15px;
+}
+.card-contact-title{
+    margin-bottom: 40px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 72px;
+}
+.btn-contact{
+    color: white;
+    background-color: black;
+    padding: 10px 70px;
+    border-radius: 60px;
+}

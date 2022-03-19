@@ -1,30 +1,23 @@
 .nav-menu {
     display: flex;
     justify-content: space-between;
-    background-color: var(--primary-black);
     padding: 0 62px;
     color: var(--primary-white);
     height: 146px;
     align-items: center;
+    transition: 0.2s ease-in-out;
+}
+
+.normal-menu {
+    background-color: var(--primary-black);
 }
 
 .nav-menu .nav-menu-brand {
     display: flex;
-    align-items: center;
 }
 
 .nav-menu .nav-menu-brand .logo-brand {
     margin-right: 20px;
-}
-
-.nav-menu-brand .info-brand .brand-name {
-    font-size: var(--fontsize-48);
-    font-weight: 700;
-}
-
-.nav-menu-brand .info-brand .brand-slogan {
-    font-size: var(--fontsize-28);
-    font-weight: 500;
 }
 
 .menu-list .menu-item {
@@ -37,11 +30,10 @@
     font-weight: 700;
     background: -webkit-linear-gradient(130.51deg, #EB9400 15.72%, #FFE600 84.94%);
     background-clip: text;
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
     -o-background-clip: text;
+    -moz-background-clip: text;
+    -webkit-background-clip: text;
     -o-text-fill-color: transparent;
-    -moz-text-fil-color: transparent;
+    -moz-text-fill-color: transparent;
     -webkit-text-fill-color: transparent;
-    
 }
