@@ -1,0 +1,19 @@
+.card-product{
+    height: 620px;
+    max-height: 620px;
+    background-color: white;
+    border-radius: 15px;
+}
+.card-product-img{
+    width: 100%;
+}
+.card-product-name{
+    display: flex;
+    justify-content: center;
+    
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 48px;
+    line-height: 72px;
+}
