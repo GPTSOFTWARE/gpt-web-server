@@ -1,4 +1,3 @@
-
 const header_menu = document.querySelectorAll("#header .nav-menu")[0]
 const header_nav = document.querySelectorAll("#header .nav-header")[0]
 
@@ -11,3 +10,34 @@ window.addEventListener('scroll', function() {
         header_menu.classList.remove('normal-menu')
     }
 })
+
+var isInViewport = function (elem) {
+    var bounding = elem.getBoundingClientRect();
+    return (
+        bounding.top >= 0 &&
+        bounding.left >= 0 &&
+        bounding.bottom <= (window.innerHeight + 248 || document.documentElement.clientHeight) &&
+        bounding.right <= (window.innerWidth || document.documentElement.clientWidth)
+    );
+};
+
+var image = document.getElementById('home-count-up');
+var count_ele = document.querySelectorAll('#home-count-up .count-value')
+let flag = 0;
+!!image && window.addEventListener('scroll', function (event) {
+	if (flag === 0 && isInViewport(image)) {
+		count_ele.forEach(ele => {
+            const updateCunter = () => {
+                const target = +ele.getAttribute('data-value')
+                const c = +ele.innerText
+    
+                if(c < target) {
+                    ele.innerText = `+${Math.floor(c + target / 100)}`
+                    setTimeout(updateCunter, 1)
+                }
+            }
+            updateCunter()
+        })
+        flag = 1;
+	}
+}, false);

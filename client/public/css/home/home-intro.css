@@ -1,0 +1,34 @@
+.home-intro {
+    background-image: url('../../img/background-home.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 936px;
+    color: var(--primary-white);
+    padding-left: 100px;
+}
+
+.home-intro .intro-info {
+    margin: auto 0;
+}
+
+.home-intro .intro-info .intro-info-title {
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.home-intro .intro-info .intro-info-description {
+    font-size: 24px;
+    font-weight: 600;
+    margin-top: 24px;
+}
+
+.home-intro .intro-info .intro-info-action {
+    display: flex;
+    margin-top: 24px;
+}
+
+.home-intro .intro-label {
+    margin: auto 0;
+}

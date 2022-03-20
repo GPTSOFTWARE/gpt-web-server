@@ -1,0 +1,14 @@
+#home-count-up {
+    padding: 62px 100px;
+    display: flex;
+    justify-content: space-around;
+    background: url('../../img/home-counter.svg');
+    background-repeat: no-repeat;
+    color: var(--primary-white);
+}
+
+#home-count-up .count-up-item {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 500;
+}

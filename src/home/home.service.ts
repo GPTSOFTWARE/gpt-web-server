@@ -12,9 +12,7 @@ export class HomeService {
 
   async get(): Promise<Home> {
     const [contact, aboutUs] = await Promise.all([
-      this.contactService.get({
-        select: ['facebook', 'instagram', 'linkedin'],
-      }),
+      this.contactService.get(),
       this.aboutUsService.get({ select: ['goals', 'introduction'] }),
     ]);
     return { contact, aboutUs };
