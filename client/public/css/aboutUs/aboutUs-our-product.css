@@ -1,4 +1,5 @@
 .card-product{
+    max-width: 572px;
     height: 620px;
     max-height: 620px;
     background-color: white;

@@ -20,7 +20,8 @@
     font-size: 24px;
 }
 .image-2{
-    background-image: url('../../img/aboutUs-2.png');
+    max-width: 1763px;
+    background-image: url('/img/aboutUs-2.png');
     height: 833px;
     background-size: cover;
     border-radius: 15px;

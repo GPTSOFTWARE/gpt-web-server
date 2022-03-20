@@ -5,6 +5,7 @@ body{
     margin: 0;
 }
 .container{
+    max-width: 1920px;
     background-color:black ;
     padding: 50px 70px;
 }
@@ -15,34 +16,87 @@ body{
     padding-bottom: 10px;
     color: white;
 }
-.customer-item{
+.card-customer{
+    max-width: 430px;
+    border-radius: 12px;
     align-items: center;
+    height: 430px;
+    max-height: 430px;
+    min-height: 430px;
+    background-color: white;
+}
+.card-customer-img{
+    width: 100%;
+}
+.card-customer-name{
+    font-family: 'Poppins';
+    height: 70px;
+    max-height: 70px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
     display: flex;
     justify-content: center;
-    height: 370px;
-    background-color: #C4C4C4;
+    align-items: center;
 }
 .featured-item{
+    max-width: 430px;
+    max-height: 210px;
+    min-height: 210px;
+    border-radius: 15px;
+    width: 100%;
     align-items: center;
     display: flex;
     justify-content: center;
     height: 210px;
-    background-color: #C4C4C4;
+    background-image: url('/img/customer-img-partner.png');
 }
-.said-item{
-    align-items: center;
+.card-said{
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    max-width: 585px;
+    align-items: center;
     height: 310px;
-    background-color: #C4C4C4;
+    max-height: 310px;
+    background-color: white;
+    border-radius: 15px;
+    padding: 29px;
+}
+.card-infomation{
+    padding-top: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.category-cus .card-description{
+    font-family: 'Poppins';
+    font-style: italic;
+    font-weight: 500;
+    font-size: 16px;
+}
+.avt{
+    width: 82px;
+    border-radius: 50%;
+    margin-right: 20px;
+}
+.name-infomation{
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
 }
 .img-contact{
+    max-width: 1920px;
     display: flex;
     align-items: center;
     justify-content: center;
     color: white;
-    background-image: url('../../../asset/img/Contact.jpg');
-    height: 790px;
+    background-image: url('/img/customer-img-contact.png');
+    height: 700px;
+    max-height: 700px;
+    min-height: 700px;
     background-size: cover;
     font-family: 'Poppins';
     font-style: normal;

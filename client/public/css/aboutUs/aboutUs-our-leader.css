@@ -1,12 +1,14 @@
 .card{
+    max-width: 425px;
     height: 620px;
     max-height: 620px;
-    background-color: white;
+    min-height: 610px;
+    background-color: #ffffff;
     border-radius: 15px;
+    padding: 12px;
 }
 .card-img{
     border-radius: 15px;
-    padding: 7px;
     width: 100%;
 }
 .card-name{
@@ -28,8 +30,7 @@
     font-size: 24px;
     line-height:36px;
 }
-.card-description{
+.catgory-aboutUs .card-description{
     display: flex;
     justify-content: center;
-    max-height: 100px;
 }

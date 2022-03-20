@@ -1,7 +1,7 @@
 .home-news {
     background: var(--primary-black);
     color: var(--primary-white);
-    padding: 0 62px 100px 62px;
+    padding: 100px 62px;
 }
 
 .home-news .home-news-intro {
@@ -21,18 +21,18 @@
 .home-news .news-intro-description {
     font-size: 24px;
     font-weight: 600;
-    margin-bottom: 32px;
+    margin-bottom: 20px;
 }
 
 .home-news .home-card-news {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
 }
 
 .home-news .card-news {
     background-color: var(--primary-white);
     border-radius: 12px;
-    max-width: 550px;
+    max-width: 569px;
 }
 .home-news .card-news a {
     color: var(--primary-black);
@@ -40,7 +40,6 @@
 
 .home-news .card-news img {
     border-radius: 12px 12px 0 0;
-    width: 550px;
 }
 
 .home-news .card-news .card-news-content {

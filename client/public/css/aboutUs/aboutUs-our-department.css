@@ -1,6 +1,8 @@
 .card-department{
+    max-width: 866px;
     height: 717px;
     max-height: 717px;
+    min-height: 710px;
     background-color: white;
     border-radius: 15px;
 }
@@ -24,4 +26,8 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
+}
+
+.card-department a{
+    color: var(--primary-black);
 }
