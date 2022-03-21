@@ -1,3 +1,10 @@
+.row-contact{
+    max-width: 1920px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+    minmax(100%,1fr));
+    place-items: center center;
+}
 .card-contact{
     margin-top: 60px;
     margin-bottom: 20px;

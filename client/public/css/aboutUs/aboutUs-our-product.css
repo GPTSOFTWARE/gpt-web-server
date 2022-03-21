@@ -1,9 +1,17 @@
+.row-product{
+    max-width: 1920px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+    minmax(32%,1fr));
+    place-items: center center;
+}
 .card-product{
-    max-width: 572px;
+    
     height: 620px;
     max-height: 620px;
     background-color: white;
     border-radius: 15px;
+    margin: 10px 15px;
 }
 .card-product-img{
     width: 100%;
@@ -11,7 +19,6 @@
 .card-product-name{
     display: flex;
     justify-content: center;
-    
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;

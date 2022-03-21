@@ -1,11 +1,25 @@
+.row-department{
+    max-width: 1920px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+    minmax(50%,1fr));
+    place-items: center center;
+}
 .card-department{
     max-width: 866px;
+    /* min-width: 866px; */
     height: 717px;
     max-height: 717px;
     min-height: 710px;
     background-color: white;
     border-radius: 15px;
+    margin: 10px 10px;
 }
+
+.card-department a {
+    color: var(--primary-black);
+}
+
 .card-department-img{
     width: 100%;
 }
@@ -19,6 +33,7 @@
     font-size: 48px;
     line-height: 72px;
 }
+
 .card-department-desctiption{
     padding:0px 32px;
     font-family: 'Poppins';
@@ -26,8 +41,4 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
-}
-
-.card-department a{
-    color: var(--primary-black);
 }
