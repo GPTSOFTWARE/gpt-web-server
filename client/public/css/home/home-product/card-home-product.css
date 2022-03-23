@@ -1,6 +1,6 @@
 .home-product .card-home-product{
     background: var(--primary-white);
-    width: 350px;
+    width: 400px;
     border-radius: 12px;
     padding: 28px;
     box-sizing: border-box;
@@ -8,13 +8,14 @@
 }
 
 .home-product .card-home-product img{
-    width: 350px;
+    width: 400px;
     height: auto;
 }
 
 .home-product .products {
     display: flex;
     justify-content: center;
+    flex-flow: wrap;
 }
 
 .home-product a {

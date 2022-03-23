@@ -1,9 +1,9 @@
 .nav-header {
-    height: 37px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 62px;
+    flex-flow: wrap;
+    padding: 12px 62px;
     color: var(--primary-white);
     transition: 0.2s ease-in-out;
 }
@@ -14,6 +14,7 @@
 
 .header-contact {
     display: flex;
+    flex-flow: wrap;
 }
 
 .header-contact .contact-item {
@@ -27,7 +28,7 @@
 }
 
 .header-contact .contact-item:last-child {
-    margin-left: 20px;
+    margin-right: 20px;
 }
 
 .header-contact .contact-item .contact-icon {

@@ -28,12 +28,14 @@
 .home-news .home-card-news {
     display: flex;
     justify-content: center;
+    flex-direction: row;
+    flex-flow: wrap;
 }
 
 .home-news .card-news {
     background-color: var(--primary-white);
     border-radius: 12px;
-    width: 350px;
+    width: 400px;
     margin: 20px;
 }
 
@@ -43,7 +45,7 @@
 
 .home-news .card-news img {
     border-radius: 12px 12px 0 0;
-    width: 350px;
+    width: 400px;
 }
 
 .home-news .card-news .card-news-content {

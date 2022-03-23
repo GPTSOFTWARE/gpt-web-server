@@ -2,8 +2,8 @@
     padding: 62px 100px;
     display: flex;
     justify-content: space-around;
+    flex-flow: wrap;
     background: url('../../img/home-counter.svg');
-    background-repeat: no-repeat;
     color: var(--primary-white);
 }
 
