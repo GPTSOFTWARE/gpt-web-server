@@ -6,6 +6,7 @@
 
 .home-news .home-news-intro {
     text-align: center;
+    width: 100%;
 }
 
 .home-news .news-intro-title {
@@ -26,20 +27,23 @@
 
 .home-news .home-card-news {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
 }
 
 .home-news .card-news {
     background-color: var(--primary-white);
     border-radius: 12px;
-    max-width: 569px;
+    width: 350px;
+    margin: 20px;
 }
+
 .home-news .card-news a {
     color: var(--primary-black);
 }
 
 .home-news .card-news img {
     border-radius: 12px 12px 0 0;
+    width: 350px;
 }
 
 .home-news .card-news .card-news-content {

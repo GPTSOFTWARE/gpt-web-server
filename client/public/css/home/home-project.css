@@ -2,9 +2,23 @@
     background: var(--primary-black);
     color: var(--primary-white);
     padding: 100px 62px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.home-project .project-content-description {
+    width: 300px;
 }
 
 .home-project .projects {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+} 
+
+.home-project .projects .projects-card {
+    margin-left: 40px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -20,20 +34,20 @@
 }
 
 .home-project .project-content-description {
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 600;
     margin-bottom: 32px;
 }
 
 .home-project .home-project-card {
     position: relative;
-    width: fit-content;
     height: fit-content;
+    width: 300px;
 }
 
 .home-project .home-project-card img {
     border-radius: 12px;
-    width: 550px;
+    width: 300px;
     margin-bottom: 32px;
 }
 

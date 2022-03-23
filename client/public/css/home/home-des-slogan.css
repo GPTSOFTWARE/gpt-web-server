@@ -4,19 +4,20 @@
     color: var(--primary-white);
     padding: 150px 100px;
     overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: wrap;
 }
 
-#home-des-slogan .des-img {
-    width: fit-content;
-    border: 8px solid #FFE600;
-    position: relative;
-}
 #home-des-slogan .des-img img {
-    transform: translate(60px, 60px);
+    border: 8px solid #FFE600;
+    max-width: 100%;
 }
+
 
 #home-des-slogan .home-des-content {
     margin: auto 0;
+    max-width: 100%;
 }
 
 #home-des-slogan .des-slogan-title {
