@@ -40,6 +40,7 @@ body{
 }
 .card-customer-img{
     width: 100%;
+    height: 307px;
 }
 .card-customer-name{
     font-family: 'Poppins';
@@ -49,9 +50,7 @@ body{
     font-weight: 600;
     font-size: 24px;
     line-height: 36px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    text-align: center;
 }
 .partner-img{
     width: 100%;
@@ -110,7 +109,7 @@ body{
     align-items: center;
     justify-content: center;
     color: white;
-    background-image: url('/img/customer-img-contact.png');
+    background-image: url('/img/Background.jpg');
     height: 700px;
     max-height: 700px;
     min-height: 700px;

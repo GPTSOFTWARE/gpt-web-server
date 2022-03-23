@@ -25,9 +25,11 @@
     font-size: 48px;
     line-height: 72px;
 }
+
 .btn-contact{
     color: white;
     background-color: black;
-    padding: 10px 70px;
+    padding: 20px 80px;
     border-radius: 60px;
+    
 }

@@ -1,5 +1,4 @@
 #home-des-slogan {
-    width: 100%;
     background: var(--primary-black);
     color: var(--primary-white);
     padding: 150px 100px;
@@ -11,13 +10,12 @@
 
 #home-des-slogan .des-img img {
     border: 8px solid #FFE600;
-    max-width: 100%;
+    max-width: 500px;
 }
 
 
 #home-des-slogan .home-des-content {
     margin: auto 0;
-    max-width: 100%;
 }
 
 #home-des-slogan .des-slogan-title {
@@ -33,5 +31,5 @@
     margin-bottom: 28px;
     font-size: 16px;
     font-weight: 600;
-    width: 746px;
+    max-width: 700px;
 }

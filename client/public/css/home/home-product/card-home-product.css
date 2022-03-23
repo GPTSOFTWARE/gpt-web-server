@@ -1,6 +1,6 @@
 .home-product .card-home-product{
     background: var(--primary-white);
-    width: 400px;
+    width: 450px;
     border-radius: 12px;
     padding: 28px;
     box-sizing: border-box;
@@ -8,8 +8,7 @@
 }
 
 .home-product .card-home-product img{
-    width: 400px;
-    height: auto;
+    width: 450px;
 }
 
 .home-product .products {
@@ -22,7 +21,6 @@
     color: var(--primary-black);
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
     align-items: center;
     height: 100%;
     overflow: hidden;
@@ -32,6 +30,7 @@
 .home-product .card-title {
     font-size: 24px;
     font-weight: 600;
+    margin-top: 20px;
 }
 
 .home-product .home-description {

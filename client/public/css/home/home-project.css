@@ -43,12 +43,12 @@
 .home-project .home-project-card {
     position: relative;
     height: fit-content;
-    width: 300px;
+    width: 450px;
 }
 
 .home-project .home-project-card img {
     border-radius: 12px;
-    width: 300px;
+    width: 450px;
     margin-bottom: 32px;
 }
 

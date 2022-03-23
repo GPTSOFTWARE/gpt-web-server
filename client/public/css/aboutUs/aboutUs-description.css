@@ -14,14 +14,14 @@
     font-style: normal;
     font-weight: 600;
     font-size: 16px;
-    line-height: 24px;
+    line-height: 32px;
 }
 .bold-description{
     font-size: 24px;
 }
 .image-2{
     max-width: 1763px;
-    background-image: url('../../img/aboutUs-2.png');
+    background-image: url('../../img/aboutUs/aboutUs-2.png');
     height: 833px;
     background-size: cover;
     border-radius: 15px;

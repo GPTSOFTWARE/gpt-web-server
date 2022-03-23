@@ -3,7 +3,7 @@
     display: flex;
     justify-content: space-around;
     flex-flow: wrap;
-    background: url('../../img/home-counter.svg');
+    background: url('../../img/home/home-counter.svg');
     color: var(--primary-white);
 }
 
