@@ -7,13 +7,10 @@
     align-items: center;
 }
 
-.home-project .project-content-description {
-    width: 300px;
-}
-
 .home-project .projects {
     display: flex;
     flex-direction: row;
+    width: 100%;
     justify-content: center;
     flex-flow: wrap;
 } 
@@ -30,25 +27,24 @@
     font-weight: 600;
     background: var(--gradient-golden) left bottom no-repeat;
     background-size: 100% 4px;
-    width: fit-content;
+    text-align: center;
     margin-bottom: 28px;
 }
 
 .home-project .project-content-description {
     font-size: 16px;
-    font-weight: 600;
+    font-weight: 500;
     margin-bottom: 32px;
+    margin-top: 32px;
 }
 
 .home-project .home-project-card {
     position: relative;
     height: fit-content;
-    width: 450px;
 }
 
 .home-project .home-project-card img {
     border-radius: 12px;
-    width: 450px;
     margin-bottom: 32px;
 }
 
@@ -57,20 +53,68 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 50%;
+    height: 80%;
     background: rgba(0, 0, 0, 0.425);
     border-radius: 12px;
     transform-origin: bottom;
     transform: rotateX(90deg);
     transition: 0.3s;
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 600;
     box-sizing: border-box;
-    padding: 28px;
+    padding: 12px;
     overflow: hidden;
 }
 
 .home-project .home-project-card:hover .project-card-content{
     transform: rotateX(0deg);
 
+}
+
+@media screen and (min-width: 1024px) {
+    .home-project .home-project-card {
+        width: 360px;
+        margin: 20px;
+    }
+    
+    .home-project .home-project-card img {
+        width: 360px;
+    }
+}
+
+@media screen and (max-width: 1336px) {
+    .home-project .project-content-title {
+        font-size: 32px;
+        width: fit-content;
+        margin: 0 auto;
+    }
+    .home-project .project-content-description {
+        text-align: center;
+    }
+
+    .home-project {
+        padding: 50px 20px;
+    }
+    .home-project .home-project-card {
+        width: 300px;
+        margin: 20px;
+    }
+    
+    .home-project .home-project-card img {
+        width: 300px;
+    }
+}
+
+@media screen and (max-width: 1070px) {
+    .home-project {
+        padding: 50px 10px;
+    }
+    .home-project .home-project-card {
+        width: 260px;
+        margin: 10px;
+    }
+    
+    .home-project .home-project-card img {
+        width: 260px;
+    }
 }

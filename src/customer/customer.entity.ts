@@ -3,14 +3,12 @@ import { Column, Entity } from 'typeorm';
 
 @Entity()
 export class Customer extends BaseEntity {
-    
-    @Column()
-    logo: string
+  @Column()
+  logo: string;
 
-    @Column()
-    name: string
+  @Column()
+  name: string;
 
-    @Column()
-    shortDes: string
-
+  @Column()
+  shortDes: string;
 }

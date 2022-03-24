@@ -2,10 +2,20 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AboutUsModule } from './aboutUs/aboutUs.module';
+import { CategoryModule } from './product/category/category.module';
 import { ContactModule } from './contact/contact.module';
 import { CustomerModule } from './customer/ customer.module';
 import { HomeModule } from './home/home.module';
+import { ProductModule } from './product/product.module';
 @Module({
-  imports: [HomeModule, ContactModule, AboutUsModule, CustomerModule,TypeOrmModule.forRoot()],
+  imports: [
+    HomeModule,
+    ContactModule,
+    AboutUsModule,
+    CustomerModule,
+    CategoryModule,
+    ProductModule,
+    TypeOrmModule.forRoot(),
+  ],
 })
 export class AppModule {}

@@ -18,7 +18,19 @@
 
 .home-product-description {
     text-align: center;
-    font-size: 24px;
-    font-weight: 600;
+    font-size: 16px;
+    font-weight: 400;
     margin-bottom: 40px;
+}
+
+@media screen and (max-width: 1335px) {
+    .home-product {
+        padding: 50px 10px;
+    }
+
+    .home-product-title {
+        font-size: 32px;
+        font-weight: 600;
+        text-align: center;
+    }
 }

@@ -2,37 +2,16 @@
     <h1 class="home-product-title">EXPLORE OUR PRODUCTS</h1>
     <div class="home-product-description">Below are the 3 main product groups that we provide, please read more to understand better</div>
     <div class="products">
-        <div class="card-home-product">
-            <a href="#">
-                <div class="card-image"><img src="img/home/cyber-security-home.svg" alt="GPT Cyber security"></div>
-                <div class="card-title">Cyber Security</div>
-                <div class="card-description"> The technology environment is increasingly risky, cyber-attacks, hackers stealing data appear at an alarming rate around the globe. 
-                    To ensure the safety and security of enterprise data, it is essential to equip information technology security solutions. 
-                    Coming to GPT Cybersecurity will help protect your business against cyber threats and make the most of online opportunities. 
-                </div>
-            </a>
-        </div>
-        <div class="card-home-product">
-            <a href="#">
-                <div class="card-image"><img src="img/home/digital-transformation-home.svg" alt="GPT Digital transformation"></div>
-                <div class="card-title">
-                    Digital Transformation
-                </div>
-                <div class="card-description">With the development of information technology, the demand for digital transformation is increasing day by day. The integration of digital technologies into business processes at enterprises is a new trend. 
-                    Digital transformation enhances the experience and optimizes business processes. Improve competitiveness and bring benefits both in terms of human and material resources to your business. 
-                    Let's experience the most advanced technology transformation at GPT Group 
-                </div>
-            </a>
-        </div>
-        <div class="card-home-product">
-            <a href="#">
-                <div class="card-image"><img src="img/home/software-home.svg" alt="GPT Software"></div>
-                <div class="card-title">Software</div>
-                <div class="card-description">In addition to the tools of the traditional business model, an indispensable tool for your business in this 4.0 era is a computer
-                    software system used to satisfy certain organizational needs/enterprises. Enterprise software solutions enable organizations to streamline and automate their
-                    processes, which can lead to greater accuracy in fulfilling your orders and more efficiency in your operations. 
-                </div>
-            </a>
-        </div>
+        <% for( let i = 0; i < categories.length; i++ ) { %>
+            <div class="card-home-product">
+                <a href="/product/<%= categories[i].name.toLowerCase().replace(/\s/g, "") %>-<%= categories[i].id %>  ">
+                    <div class="card-image"><img src="img/home/cyber-security-home.svg" alt="GPT Cyber security"></div>
+                    <div class="card-title"><%= categories[i].name %> </div>
+                    <div class="card-description">
+                        <%= categories[i].description %>  
+                    </div>
+                </a>
+            </div>
+        <% } %>
     </div>
 </div>

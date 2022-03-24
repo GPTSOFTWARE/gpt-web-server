@@ -1,0 +1,13 @@
+<div class="nav-product">
+    <% for(let i = 0; i < categories.length; i++) { %>
+        <% if (index - 1 === i) { %>
+            <a href="/product/<%= categories[i].id %>" class="btn-nav-product btn-active">
+                <%= categories[i].name %> 
+            </a>
+        <% } else { %>
+            <a href="/product/<%= categories[i].id %>" class="btn-nav-product">
+                <%= categories[i].name %> 
+            </a>
+        <% } %> 
+    <% } %>
+</div>

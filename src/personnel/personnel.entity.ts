@@ -7,7 +7,6 @@ export class Personnel extends BaseEntity {
   @ManyToOne(() => AboutUs, (aboutUs) => aboutUs.personnels, {
     onDelete: 'CASCADE',
   })
-
   @JoinColumn()
   aboutUs: AboutUs;
 
@@ -18,8 +17,8 @@ export class Personnel extends BaseEntity {
   img: string;
 
   @Column()
-  position: string
+  position: string;
 
-  @Column({type: 'text'})
+  @Column({ type: 'text' })
   bio: string;
 }

@@ -1,0 +1,46 @@
+.product-container{ 
+    background-color:black ;
+}
+
+.img-contact {
+    background: url('/img/Background.jpg');
+}
+
+.product-container .row-product{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+    minmax(415px,1fr));
+    grid-row-gap: center center;
+    padding: 50px 60px;
+}
+.product-container .card-prduct{
+    max-width: 415px;
+    min-width: 415px;
+    margin: 15px 10px;
+    height: 500px;
+    max-height: 500px;
+    min-height: 500px;
+    border-radius: 15px;
+    background-color: white;
+    text-align: center;
+}
+.product-container .card-prduct:hover{
+    transform: scale(1.1);
+    transition: all ease-in-out 0.4s;
+}
+.row-cyber-product a{
+    text-decoration: none;
+}
+.row-product .card-name{
+    color: black;
+    font-family: 'Poppins';
+    height: 70px;
+    max-height: 70px;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

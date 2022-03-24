@@ -23,7 +23,4 @@ export class AboutUs extends BaseEntity {
 
   @OneToMany(() => Department, (department) => department.aboutUs)
   departments: Department[];
-
-  @OneToMany(() => Product, (product) => product.aboutUs)
-  products: Product[];
 }

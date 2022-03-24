@@ -1,0 +1,30 @@
+.product-container .nav-product{
+    width: 100%;
+    background-color: #FFAB2D;
+    height: 100px;
+    margin-top: -7px;
+    display: flex;
+    align-items: center;
+    padding: 0 60px;
+}
+.product-container .btn-nav-product{
+    width: 385px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 36px;
+    text-align: center;
+    padding: 10px 0px;
+    margin: 0px 15px;
+}
+.product-container .btn-nav-product:hover{
+    background-color: white;
+    border-radius: 10px;
+    color: #FFAB2D;
+}
+.product-container .btn-active{
+    background-color: white;
+    border-radius: 10px;
+    color: #FFAB2D;
+}

@@ -41,3 +41,10 @@ let flag = 0;
         flag = 1;
 	}
 }, false);
+
+const responsive_btn = document.getElementById("menu-responsive-btn")
+const menu = document.querySelectorAll(".nav-menu .menu-list")[0];
+
+responsive_btn.addEventListener("click", () => {
+    menu.classList.toggle("nav-menu-display")
+})

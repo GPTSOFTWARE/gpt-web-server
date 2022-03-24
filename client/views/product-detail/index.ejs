@@ -1,0 +1,5 @@
+<%- include('../common/head.ejs', {title: product.name + " | GPT Group", content: product.name + " of GPT Group", keyword: "gpt product, product GPT"})  %>
+    <%- include('../common/header/header.ejs',contact) %>
+        <%- include('./detailProduct-body/detail-body.ejs', {categories, product}) %> 
+    <%- include('../common/footer/footer.ejs',contact) %>
+<%- include('../common/tail.ejs') %>  

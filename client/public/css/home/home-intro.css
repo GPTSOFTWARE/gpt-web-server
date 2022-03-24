@@ -11,6 +11,11 @@
 
 .home-intro .intro-info {
     margin: auto 0;
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
 }
 
 .home-intro .intro-info .intro-info-title {
@@ -20,11 +25,52 @@
 
 .home-intro .intro-info .intro-info-description {
     font-size: 24px;
-    font-weight: 600;
+    font-weight: 400;
     margin-top: 24px;
 }
 
 .home-intro .intro-info .intro-info-action {
     display: flex;
     margin-top: 24px;
+}
+
+@media screen and (max-width: 1024px) {
+    .home-intro {
+        padding: 0 20px;
+    }
+    .home-intro .intro-info {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        height: 100%;
+    }
+
+    .home-intro .intro-info .intro-info-title {
+        font-size: 32px;
+        font-weight: 600;
+        text-align: center;
+    }
+    .home-intro .intro-info .intro-info-description {
+        font-size: 16px;
+        font-weight: 400;
+        margin-top: 24px;
+        text-align: center;
+    }
+    
+    .home-intro .intro-info .intro-info-action {
+        display: flex;
+        margin-top: 16px;
+    }
+}
+
+@media screen and (max-width: 470px) {
+    .home-intro .intro-info .intro-info-action {
+        display: flex;
+        flex-direction: column;
+    }
+    .home-intro .intro-info .intro-info-action .btn {
+        margin-top: 12px;
+        margin-right: 0;
+    }
 }

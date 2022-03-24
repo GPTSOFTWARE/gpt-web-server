@@ -11,7 +11,7 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'client/public'));
   app.setViewEngine('ejs');
 
-  app.useGlobalFilters(new HttpExceptionFilter())
+  app.useGlobalFilters(new HttpExceptionFilter());
 
   await app.listen(3000);
 }

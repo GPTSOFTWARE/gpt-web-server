@@ -1,7 +1,7 @@
 import { AboutUs } from 'src/aboutUs/aboutUs.entity';
 import { Career } from 'src/career/career.entity';
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class Department extends BaseEntity {
@@ -13,4 +13,13 @@ export class Department extends BaseEntity {
 
   @OneToMany(() => Career, (career) => career.department)
   careers: Career[];
+
+  @Column()
+  logo: string;
+
+  @Column()
+  name: string;
+
+  @Column({ type: 'text' })
+  description: string;
 }

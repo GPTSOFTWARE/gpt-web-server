@@ -1,0 +1,23 @@
+.product-container .features-function{
+    padding: 30px 50px 50px 50px;
+    color: white;
+}
+.product-container .title-features{
+    padding: 0px 10px;
+}
+.product-container .row-software-product{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,
+    minmax(410px,1fr));
+    grid-row-gap: center center;
+    margin-left: -10px;
+    margin-right: -10px;
+}
+.product-container .card-prduct-sofrware{
+    background-color: #cccc;
+    margin: 20px 20px;
+    border-radius: 15px;
+    height: 370px;
+    max-height: 370px;
+    min-height: 370px;
+}

@@ -1,11 +1,33 @@
 import { AboutUs } from 'src/aboutUs/aboutUs.entity';
+import { Category } from 'src/product/category/category.entity';
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Entity, ManyToOne } from 'typeorm';
+import { Partner } from 'src/partner/partner.entity';
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Product extends BaseEntity {
-  @ManyToOne(() => AboutUs, (aboutUs) => aboutUs.products, {
-    onDelete: 'CASCADE',
+
+  @Column()
+  name: string
+
+  @Column({type: "text"})
+  description: string
+
+  @Column({type: "text"})
+  utility: string
+
+  @Column({type: "text"})
+  feature: string
+
+  @ManyToOne(() => Partner, (partner) => partner.products, {
+    onDelete: "CASCADE"
   })
-  aboutUs: AboutUs;
+  @JoinColumn()
+  partner: Partner;
+
+  @ManyToOne(() => Category, (category) => category.products, {
+    onDelete: "CASCADE"
+  })
+  @JoinColumn()
+  categrory: Category;
 }

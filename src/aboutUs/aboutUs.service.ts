@@ -10,7 +10,7 @@ import { ContactService } from 'src/contact/contact.service';
 export class AboutUsService extends BaseService<AboutUs> {
   constructor(
     @InjectRepository(AboutUs) aboutUsRepo: Repository<AboutUs>,
-    private contactService: ContactService
+    private contactService: ContactService,
   ) {
     super(aboutUsRepo);
   }
@@ -18,13 +18,13 @@ export class AboutUsService extends BaseService<AboutUs> {
   async get(options?: FindOneOptions<AboutUs>): Promise<any> {
     const [aboutUs, contact] = await Promise.all([
       this.findById('1', options),
-      this.contactService.get()
+      this.contactService.get(),
     ]);
     _.forEach(aboutUs, (value, key) => {
       key === 'goals' && (aboutUs[key] = value.split('|'));
       key === 'values' && (aboutUs[key] = value.replace(/\|/g, ', '));
     });
 
-    return {aboutUs, contact};
+    return { aboutUs, contact };
   }
 }
