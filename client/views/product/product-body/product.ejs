@@ -1,12 +1,12 @@
 <div class="products">
     <% for(let i = 0; i < products.length; i++) { %>
-        <a href='/product/<%= id %>/<%= products[i].id %> %> '>
-            <div class="card-prduct">
+        <div class="card-prduct">
+            <a href='/product/<%= id %>/<%= products[i].id %> %> '></a>
                 <img src="/img/customer-img-protential.png" class="card-product-img">
                 <div class="card-name">
                     <%= products[i].name %>
                 </div>
-            </div>
-        </a>
+            </a>
+        </div>
     <% } %> 
 </div>
