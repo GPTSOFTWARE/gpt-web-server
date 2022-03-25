@@ -28,8 +28,6 @@ export class ProductService extends BaseService<Product> {
             !!(key === "feature") && (product[key] = value.split("|"));
         }) 
 
-        console.log(product)
-
         return {product, contact, categories}
     }
 
@@ -49,9 +47,7 @@ export class ProductService extends BaseService<Product> {
             this.contactService.get(),
             this.categoryService.getAll()
         ])
-
-        console.log()
-
+        
         return {category, contact, categories}
     }
 }

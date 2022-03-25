@@ -1,5 +1,5 @@
 <div class="product-detail-container">
-    <%- include('./detail-img-contact.ejs') %>
+    <%- include('./detail-img-contact.ejs', product) %>
     <%- include('../../common/nav-product/nav-product.ejs', {categories, index: product.category.id}) %>
     <%- include('./detail-descritption.ejs', product) %>   
     <%- include('./detail-features.ejs', product) %>
