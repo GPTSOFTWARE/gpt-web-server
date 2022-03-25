@@ -2,12 +2,16 @@
     text-align: center;
 }
 
+.footer-brand img {
+    width: 100px;
+}
+
 .footer-brand .brand-name {
-    font-size: 48px;
+    font-size: 32px;
     font-weight: 700;
 }
 
 .footer-brand .brand-slogan {
-    font-size: 28px;
+    font-size: 16px;
     font-weight: 500;
 }
