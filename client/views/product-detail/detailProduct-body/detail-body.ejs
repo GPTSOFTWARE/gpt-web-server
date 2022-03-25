@@ -1,10 +1,9 @@
-<div class="product-container">
+<div class="product-detail-container">
     <%- include('./detail-img-contact.ejs') %>
-    <%- include('../../common/nav-product/nav-product.ejs', {categories, index}) %>
-    <%- include('./detail-descritption.ejs') %>   
-    <%- include('./detail-features.ejs') %>   
+    <%- include('../../common/nav-product/nav-product.ejs', {categories, index: product.category.id}) %>
+    <%- include('./detail-descritption.ejs', product) %>   
+    <%- include('./detail-features.ejs', product) %>
     <%- include('./detail-contact.ejs') %>   
-    <%- include('./detail-makeForU.ejs') %>   
-    <!-- <%- include('./detail-features-web.ejs') %>    -->
-    <%- include('./detail-similar.ejs') %>   
+    <%- include('./detail-makeForU.ejs', product) %>
+    <%- include('../../common/card-project/card-project.ejs', {title: "OTHER PRODUCTS", description: "Our other products"}) %>   
 </div>

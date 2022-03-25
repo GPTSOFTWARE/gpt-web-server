@@ -1,5 +1,5 @@
-<div class="product-container softWare">
-    <%- include('./img-contact.ejs', {categories, index}) %>
-    <%- include('../../common/nav-product/nav-product.ejs', {categories, index}) %>
-    <%- include('./product.ejs', {products, index}) %>   
+<div class="product-container">
+    <%- include('../../common/img-contact/img-contact.ejs', {content: `PRODUCTS / ${category.name.toUpperCase()}` }) %>
+    <%- include('../../common/nav-product/nav-product.ejs', { categories, index: category.id }) %>
+    <%- include('./product.ejs', category) %>   
 </div>

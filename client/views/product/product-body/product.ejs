@@ -1,14 +1,12 @@
-<div class="grid">
-    <div class="row-product">
-        <% for(let i = 0; i < products.length; i++) { %>
-            <a href='/product/<%= index %>/<%= products[i].id %> %> '>
-                <div class="card-prduct">
-                    <img src="/img/customer-img-protential.png" alt="" class="card-customer-img">
-                    <div class="card-name">
-                        <%= products[i].name %>
-                    </div>
+<div class="products">
+    <% for(let i = 0; i < products.length; i++) { %>
+        <a href='/product/<%= id %>/<%= products[i].id %> %> '>
+            <div class="card-prduct">
+                <img src="/img/customer-img-protential.png" alt="" class="card-customer-img">
+                <div class="card-name">
+                    <%= products[i].name %>
                 </div>
-            </a>
-        <% } %> 
-    </div>
+            </div>
+        </a>
+    <% } %> 
 </div>

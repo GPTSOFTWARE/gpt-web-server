@@ -1,4 +1,4 @@
-.home-project {
+.card-project {
     background: var(--primary-black);
     color: var(--primary-white);
     padding: 100px 62px;
@@ -7,7 +7,7 @@
     align-items: center;
 }
 
-.home-project .projects {
+.card-project .projects {
     display: flex;
     flex-direction: row;
     width: 100%;
@@ -15,14 +15,14 @@
     flex-flow: wrap;
 } 
 
-.home-project .projects .projects-card {
+.card-project .projects .projects-card {
     margin-left: 40px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
 }
 
-.home-project .project-content-title {
+.card-project .project-content-title {
     font-size: 48px;
     font-weight: 600;
     background: var(--gradient-golden) left bottom no-repeat;
@@ -31,24 +31,25 @@
     margin-bottom: 28px;
 }
 
-.home-project .project-content-description {
+.card-project .project-content-description {
     font-size: 16px;
     font-weight: 500;
     margin-bottom: 32px;
     margin-top: 32px;
+    text-align: center;
 }
 
-.home-project .home-project-card {
+.card-project .project-card {
     position: relative;
     height: fit-content;
 }
 
-.home-project .home-project-card img {
+.card-project .project-card img {
     border-radius: 12px;
     margin-bottom: 32px;
 }
 
-.home-project .home-project-card .project-card-content {
+.card-project .project-card .project-card-content {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -66,55 +67,55 @@
     overflow: hidden;
 }
 
-.home-project .home-project-card:hover .project-card-content{
+.card-project .project-card:hover .project-card-content{
     transform: rotateX(0deg);
 
 }
 
 @media screen and (min-width: 1024px) {
-    .home-project .home-project-card {
+    .card-project .project-card {
         width: 360px;
         margin: 20px;
     }
     
-    .home-project .home-project-card img {
+    .card-project .project-card img {
         width: 360px;
     }
 }
 
 @media screen and (max-width: 1336px) {
-    .home-project .project-content-title {
+    .card-project .project-content-title {
         font-size: 32px;
         width: fit-content;
         margin: 0 auto;
     }
-    .home-project .project-content-description {
+    .card-project .project-content-description {
         text-align: center;
     }
 
-    .home-project {
+    .card-project {
         padding: 50px 20px;
     }
-    .home-project .home-project-card {
+    .card-project .project-card {
         width: 300px;
         margin: 20px;
     }
     
-    .home-project .home-project-card img {
+    .card-project .project-card img {
         width: 300px;
     }
 }
 
 @media screen and (max-width: 1070px) {
-    .home-project {
+    .card-project {
         padding: 50px 10px;
     }
-    .home-project .home-project-card {
+    .card-project .project-card {
         width: 260px;
         margin: 10px;
     }
     
-    .home-project .home-project-card img {
+    .card-project .project-card img {
         width: 260px;
     }
 }

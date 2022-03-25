@@ -1,4 +1,3 @@
-import { AboutUs } from 'src/aboutUs/aboutUs.entity';
 import { Category } from 'src/product/category/category.entity';
 import { BaseEntity } from 'src/common/entities/base.entity';
 import { Partner } from 'src/partner/partner.entity';
@@ -29,5 +28,5 @@ export class Product extends BaseEntity {
     onDelete: "CASCADE"
   })
   @JoinColumn()
-  categrory: Category;
+  category: Category;
 }

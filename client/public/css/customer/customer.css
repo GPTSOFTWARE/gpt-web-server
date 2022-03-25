@@ -4,11 +4,15 @@
 body{   
     margin: 0;
 }
-.row-protential{
-    display: grid;
-    grid-template-columns: repeat(auto-fit,
-    minmax(430px,1fr));
-    place-items: center center;
+
+.customers {
+    max-width: 1420px;
+    margin: 0 auto;
+}
+.protential{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
 }
 .row-3{
     display: grid;
@@ -23,45 +27,41 @@ body{
 }
 
 .category-cus{
-    padding-left:8px ;
-    padding-top: 20px;
+    margin-top: 32px;
     padding-bottom: 10px;
     color: white;
+    text-align: center;
 }
 .card-customer{
-    max-width: 430px;
+    max-width: 330px;
     border-radius: 12px;
     align-items: center;
-    height: 430px;
-    max-height: 430px;
-    min-height: 430px;
     background-color: white;
     margin: 15px 10px;
 }
 .card-customer-img{
-    width: 100%;
-    height: 307px;
+    width: 330px;
+    height: 200px;
 }
+
 .card-customer-name{
     font-family: 'Poppins';
-    height: 70px;
-    max-height: 70px;
     font-style: normal;
     font-weight: 600;
     font-size: 24px;
     line-height: 36px;
     text-align: center;
+    padding: 20px 20px;
 }
 .partner-img{
-    width: 100%;
+    width: 330px;
+    height: 160px;
 }
 .card-partner{
-    max-width: 430px;
+    max-width: 330px;
+    height: 160px;
     border-radius: 12px;
     align-items: center;
-    height: 200px;
-    max-height: 200px;
-    min-height: 200px;
     background-color: white;
     margin: 15px 10px;
 }
@@ -119,4 +119,23 @@ body{
     font-weight: 700;
     font-size: 48px;
     line-height: 72px;
+}
+
+@media screen and (max-width: 400px) {
+    .card-customer{
+        max-width: 250px;
+    }
+    .card-customer-img{
+        width: 250px;
+        height: 150px;
+    }
+
+    .partner-img{
+        width: 250px;
+        height: 150px;
+    }
+    .card-partner{
+        max-width: 250px;
+        height: 150px;
+    }
 }

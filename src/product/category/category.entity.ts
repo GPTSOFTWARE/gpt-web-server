@@ -13,6 +13,6 @@ export class Category extends BaseEntity {
   @Column({ type: 'text' })
   description: string;
 
-  @OneToMany(() => Product, (product) => product.categrory)
+  @OneToMany(() => Product, (product) => product.category)
   products: Product[];
 }

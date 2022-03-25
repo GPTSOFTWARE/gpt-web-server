@@ -1,44 +1,75 @@
-.row-department{
-    max-width: 1920px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit,
-    minmax(50%,1fr));
-    place-items: center center;
-}
-.card-department{
-    max-width: 866px;
-    /* min-width: 866px; */
-    height: 717px;
-    max-height: 717px;
-    min-height: 710px;
-    background-color: white;
-    border-radius: 15px;
-    margin: 10px 10px;
+.about-us-department {
+    max-width: 1420px;
+    margin: 0 auto;
 }
 
-.card-department a {
+.about-us-department .department{
+    display: flex;
+    flex-flow: wrap;
+    justify-content: center;
+}
+.about-us-department .card-department{
+    width: 500px;
+    background-color: white;
+    border-radius: 15px;
+    margin: 20px 20px;
+}
+
+.about-us-department .card-department a {
     color: var(--primary-black);
 }
 
-.card-department-img{
+.about-us-department .card-department-img{
     width: 100%;
 }
-.card-department-name{
-    padding:0px 32px;
-    display: flex;
-    justify-content: start;
+.about-us-department .card-department-name{
+    text-align: center;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 600;
-    font-size: 48px;
-    line-height: 72px;
+    font-size: 32px;
+    line-height: 40px;
+    margin-top: 20px;
 }
 
-.card-department-desctiption{
-    padding:0px 32px;
+.about-us-department .card-department-desctiption{
+    padding: 32px 32px;
     font-family: 'Poppins';
     font-style: normal;
     font-weight: 500;
     font-size: 16px;
     line-height: 24px;
+    text-align: center;
+}
+
+@media screen and (max-width: 1240px) {
+    .about-us-department .card-department {
+        width: 400px;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .about-us-department .card-department {
+        width: 260px;
+        height: 350px;
+    }
+
+    .about-us-department .card-department-name {
+        font-size: 24px;
+        line-height: 24px;
+    }
+
+    .about-us-department .card-department-desctiption {
+        padding: 12px 12px;
+        margin-bottom: 24px;
+        height: 110px;
+        overflow: hidden;
+    }
+}
+
+
+@media screen and (max-width: 500px) {
+    .about-us-department .category-aboutUs {
+        font-size: 32px;
+    }
 }

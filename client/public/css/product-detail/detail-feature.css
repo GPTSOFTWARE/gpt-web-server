@@ -1,0 +1,8 @@
+.product-detail-container .features-function .title-features{
+    color: var(--primary-white);
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 24px;
+    font-weight: 500;
+    margin-top: 32px;
+}
