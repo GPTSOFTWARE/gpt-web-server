@@ -5,5 +5,5 @@
     <%- include('./detail-features.ejs', product) %>
     <%- include('./detail-contact.ejs') %>   
     <%- include('./detail-makeForU.ejs', product) %>
-    <%- include('../../common/card-project/card-project.ejs', {title: "OTHER PRODUCTS", description: "Our other products"}) %>   
+    <%- include('./detail-similar-project.ejs', {category, thisProductId: product.id}) %>   
 </div>

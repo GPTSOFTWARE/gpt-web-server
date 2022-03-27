@@ -4,23 +4,13 @@
         <div class="project-content-description"><%= description %> </div>
     </div>
     <div class="projects">
-        <div class="project-card">
-            <a href="#">
-                <div class="project-card-img"><img src="/img/home/demo-home-project.jpg" alt=""></div>
-                <div class="project-card-content">Example</div>
-            </a>
-        </div>
-        <div class="project-card">
-            <a href="#">
-                <div class="project-card-img"><img src="/img/home/demo-home-project.jpg" alt=""></div>
-                <div class="project-card-content"></div>
-            </a>
-        </div>
-        <div class="project-card">
-            <a href="#">
-                <div class="project-card-img"><img src="/img/home/demo-home-project.jpg" alt=""></div>
-                <div class="project-card-content"></div>
-            </a>
-        </div>
+        <% products.forEach(product => { %>
+            <div class="project-card">
+                <a href="/product/<%= product.category.id %>/<%= product.id %>  ">
+                    <div class="project-card-img"><img src="/img/home/demo-home-project.jpg" alt=""></div>
+                    <div class="project-card-content"><%= product.name %> </div>
+                </a>
+            </div>
+        <% }) %>
     </div>    
 </div>

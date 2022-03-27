@@ -11,18 +11,18 @@ export class ProductController {
     @Get()
     @Render("product/index")
     get() {
-        return this.productService.getByCategory("1");
+        return this.productService.getByCategory({categoryId: "1"});
     }
 
     @Get(":categoryid")
     @Render("product/index")
     getDetail(@Param('categoryid') categoryid: string) {
-        return this.productService.getByCategory(categoryid);
+        return this.productService.getByCategory({categoryId: categoryid});
     }
 
     @Get(":categoryid/:productid")
     @Render("product-detail/index")
     async getDetailProduct(@Param() params) {
-        return this.productService.getOne(params.productid, {relations: ["category"]})
+        return this.productService.getByCategory({categoryId: params.categoryid, productId: params.productid})
     }
 }

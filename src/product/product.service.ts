@@ -1,4 +1,4 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, NotFoundException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { BaseService } from "src/common/services/base.service";
 import { FindManyOptions, FindOneOptions, Repository } from "typeorm";
@@ -18,17 +18,13 @@ export class ProductService extends BaseService<Product> {
     }
 
     async getOne(id: string ,option?: FindOneOptions<Product>) {
-        const [product, contact, categories] = await Promise.all([
-            this.findById(id, option),
-            this.contactService.get(),
-            this.categoryService.getAll()
-        ]);
+        const product = await this.findById(id, option);
         _.forEach(product, (value, key) => {
             !!(key === "utility") && (product[key] = value.split("|"));
             !!(key === "feature") && (product[key] = value.split("|"));
         }) 
 
-        return {product, contact, categories}
+        return product
     }
 
     async getAll(options?: FindManyOptions<Product>) {
@@ -41,9 +37,23 @@ export class ProductService extends BaseService<Product> {
         return products;
     }
 
-    async getByCategory(categoryId: string) {
+    async getByCategory(input: InputGetByCategory) {
+
+        if(input.productId) {
+            const [category, product, contact, categories] = await Promise.all([
+                this.categoryService.get(input.categoryId, {relations: ["products"]}),
+                this.getOne(input.productId, {relations: ["category"]}),
+                this.contactService.get(),
+                this.categoryService.getAll()
+            ])
+
+            if(!_.some(category.products, ["id", product.id])) throw new NotFoundException("Not found product");
+
+            return {category, product, contact, categories}
+        }
+
         const [category, contact, categories] = await Promise.all([
-            this.categoryService.get(categoryId, {relations: ["products"]}),
+            this.categoryService.get(input.categoryId, {relations: ["products"]}),
             this.contactService.get(),
             this.categoryService.getAll()
         ])
