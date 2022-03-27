@@ -4,7 +4,7 @@
     <div class="products">
         <% for( let i = 0; i < categories.length; i++ ) { %>
             <div class="card-home-product">
-                <a href="/product/<%= categories[i].name.toLowerCase().replace(/\s/g, "") %>-<%= categories[i].id %>  ">
+                <a href="/product/<%= categories[i].id %>">
                     <div class="card-image"><img src="img/home/cyber-security-home.svg" alt="GPT Cyber security"></div>
                     <div class="card-title"><%= categories[i].name %> </div>
                     <div class="card-description">

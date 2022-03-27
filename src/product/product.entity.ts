@@ -1,6 +1,6 @@
 import { Category } from 'src/product/category/category.entity';
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Partner } from 'src/partner/partner.entity';
+import { Partner } from 'src/customer/partner/partner.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity()

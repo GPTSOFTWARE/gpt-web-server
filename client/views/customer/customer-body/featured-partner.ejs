@@ -1,17 +1,12 @@
-<div class="parters">
+<div class="partners">
     <h1 class="category-cus">FEATURED PARTNER</h1>
     <div class="protential">
-        <div class="card-partner">
-            <img src="/img/customer-img-partner.png" alt="" class="partner-img">
-        </div>
-        <div class="card-partner">
-            <img src="/img/customer-img-partner.png" alt="" class="partner-img">
-        </div>
-        <div class="card-partner">
-            <img src="/img/customer-img-partner.png" alt="" class="partner-img">
-        </div>
-        <div class="card-partner">
-            <img src="/img/customer-img-partner.png" alt="" class="partner-img">
-        </div>
+        <% partners.forEach(partner => { %>
+            <div class="card-partner">
+                <a href="#">
+                    <img src="<%= partner.logo %> " class="partner-img">
+                </a>
+            </div>
+        <% }) %>
     </div>
 </div>
