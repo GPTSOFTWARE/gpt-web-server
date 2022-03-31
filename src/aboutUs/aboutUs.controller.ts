@@ -8,6 +8,8 @@ export class AboutUsController {
   @Get()
   @Render('aboutUs/index')
   get() {
-    return this.aboutUsService.get({ relations: ['personnels', "departments"] });
+    return this.aboutUsService.get({
+      relations: ['personnels', 'departments'],
+    });
   }
 }

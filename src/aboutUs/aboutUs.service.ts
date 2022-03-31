@@ -12,7 +12,7 @@ export class AboutUsService extends BaseService<AboutUs> {
   constructor(
     @InjectRepository(AboutUs) aboutUsRepo: Repository<AboutUs>,
     private contactService: ContactService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
   ) {
     super(aboutUsRepo);
   }
@@ -21,7 +21,7 @@ export class AboutUsService extends BaseService<AboutUs> {
     const [aboutUs, contact, categories] = await Promise.all([
       this.findById('1', options),
       this.contactService.get(),
-      this.categoryService.getAll()
+      this.categoryService.getAll(),
     ]);
     _.forEach(aboutUs, (value, key) => {
       key === 'goals' && (aboutUs[key] = value.split('|'));

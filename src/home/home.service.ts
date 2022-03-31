@@ -11,16 +11,18 @@ export class HomeService {
     private contactService: ContactService,
     private aboutUsService: AboutUsService,
     private categoryService: CategoryService,
-    private productService: ProductService
+    private productService: ProductService,
   ) {}
 
   async get(): Promise<Home> {
-    const [contact, aboutUs, categories, products] = await Promise.all([
+    const [contact, aboutUs, categories] = await Promise.all([
       this.contactService.get(),
       this.aboutUsService.get({ select: ['goals', 'introduction'] }),
-      this.categoryService.getAll(),
-      this.productService.getAll({take: 3, relations: ["category"]})
+      this.categoryService.getAll({ relations: ['products'] }),
     ]);
-    return { contact, aboutUs, categories, products };
+
+    console.log(categories[0].products);
+
+    return { contact, aboutUs, categories };
   }
 }

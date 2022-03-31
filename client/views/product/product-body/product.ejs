@@ -2,7 +2,7 @@
     <% for(let i = 0; i < products.length; i++) { %>
         <div class="card-prduct">
             <a href='/product/<%= id %>/<%= products[i].id %> %> '>
-                <img src="/img/customer-img-protential.png" class="card-product-img">
+                <img src="/<%= products[i].banner %> " class="card-product-img">
                 <div class="card-name">
                     <%= products[i].name %>
                 </div>

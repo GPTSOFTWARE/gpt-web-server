@@ -10,7 +10,11 @@ import { Department } from './department/department.entity';
 import { DepartmentService } from './department/department.service';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([AboutUs, Personnel, Department]), ContactModule, ProductModule],
+  imports: [
+    TypeOrmModule.forFeature([AboutUs, Personnel, Department]),
+    ContactModule,
+    ProductModule,
+  ],
   controllers: [AboutUsController],
   providers: [AboutUsService, DepartmentService],
   exports: [AboutUsService],

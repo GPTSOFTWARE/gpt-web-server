@@ -5,27 +5,29 @@ import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 
 @Entity()
 export class Product extends BaseEntity {
+  @Column()
+  name: string;
+
+  @Column({ type: 'text' })
+  description: string;
+
+  @Column({ type: 'text' })
+  utility: string;
+
+  @Column({ type: 'text' })
+  feature: string;
 
   @Column()
-  name: string
-
-  @Column({type: "text"})
-  description: string
-
-  @Column({type: "text"})
-  utility: string
-
-  @Column({type: "text"})
-  feature: string
+  banner: string;
 
   @ManyToOne(() => Partner, (partner) => partner.products, {
-    onDelete: "CASCADE"
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   partner: Partner;
 
   @ManyToOne(() => Category, (category) => category.products, {
-    onDelete: "CASCADE"
+    onDelete: 'CASCADE',
   })
   @JoinColumn()
   category: Category;

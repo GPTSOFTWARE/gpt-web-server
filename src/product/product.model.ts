@@ -1,4 +1,4 @@
-type InputGetByCategory = {
-    categoryId: string,
-    productId?: string
-}
+export type InputGetByCategory = {
+  categoryId: string;
+  productId?: string;
+};

@@ -11,7 +11,7 @@ export class CustomerService extends BaseService<Customer> {
   constructor(
     @InjectRepository(Customer) customerRepo: Repository<Customer>,
     private contactService: ContactService,
-    private partnerService: PartnerService
+    private partnerService: PartnerService,
   ) {
     super(customerRepo);
   }
@@ -20,7 +20,7 @@ export class CustomerService extends BaseService<Customer> {
     const [customers, contact, partners] = await Promise.all([
       this.repo.find(),
       this.contactService.get(),
-      this.partnerService.getAll({select: ["logo"]})
+      this.partnerService.getAll({ select: ['logo'] }),
     ]);
     return { customers, contact, partners };
   }
