@@ -1,7 +1,7 @@
 <div id="home-body">
-    <%- include("./home-intro.ejs") %>
-    <%- include("./home-des-slogan.ejs") %> 
-    <%- include("./home-product.ejs", {categories}) %>
+    <%- include("./home-intro.ejs", home) %>
+    <%- include("./home-des-slogan.ejs", home) %> 
+    <%- include("./home-product.ejs", { categories }) %>
     <%- include("./home-count-up.ejs") %>
-    <%- include("./home-card-project.ejs", {title: "FEATURED PROJECT", description: "Below are some of the outstanding projects we have worked on", categories}) %> 
+    <%- include("./home-card-project.ejs", { categories }) %> 
 </div>
