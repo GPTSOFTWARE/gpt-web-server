@@ -1,5 +1,5 @@
 import { NotFoundException } from '@nestjs/common';
-import { FindOneOptions, Repository } from 'typeorm';
+import { DeleteResult, FindOneOptions, Repository } from 'typeorm';
 
 export class BaseService<T> {
   constructor(protected repo: Repository<T>) {}
@@ -21,5 +21,10 @@ export class BaseService<T> {
     }
 
     return result;
+  }
+
+  protected async deleteOneById(id: string): Promise<DeleteResult> {
+    this.findById(id);
+    return this.repo.delete(id);
   }
 }
