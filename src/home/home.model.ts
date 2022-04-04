@@ -9,3 +9,8 @@ export type HomeType = {
   aboutUs: AboutUs;
   categories: Category[];
 };
+
+export type HomeSetInput = {
+  introduction: string;
+  slogan: string;
+}

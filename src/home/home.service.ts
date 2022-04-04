@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AboutUsService } from 'src/aboutUs/aboutUs.service';
 import { BaseService } from 'src/common/services/base.service';
@@ -6,7 +6,8 @@ import { ContactService } from 'src/contact/contact.service';
 import { CategoryService } from 'src/product/category/category.service';
 import { Repository } from 'typeorm';
 import { Home } from './home.entity';
-import { HomeType } from './home.model';
+import { HomeSetInput, HomeType } from './home.model';
+import * as _ from 'lodash';
 
 @Injectable()
 export class HomeService extends BaseService<Home>{
@@ -26,5 +27,15 @@ export class HomeService extends BaseService<Home>{
     ]);
 
     return { home, contact, aboutUs, categories };
+  }
+
+  async update(input: HomeSetInput): Promise<Home> {
+    const homeData = await this.findById("1");
+
+    _.forEach(homeData, (value, key) => {
+      value && (homeData[key] = value);
+    });
+
+    return this.repo.save(homeData);
   }
 }
