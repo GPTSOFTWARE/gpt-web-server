@@ -11,5 +11,6 @@ import { PartnerService } from './partner/partner.service';
   imports: [ContactModule, TypeOrmModule.forFeature([Customer, Partner])],
   providers: [CustomerService, PartnerService],
   controllers: [CustomerController],
+  exports: [PartnerService]
 })
 export class CustomerModule {}

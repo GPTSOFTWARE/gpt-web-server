@@ -32,7 +32,7 @@ export class HomeService extends BaseService<Home>{
   async update(input: HomeSetInput): Promise<Home> {
     const homeData = await this.findById("1");
 
-    _.forEach(homeData, (value, key) => {
+    _.forEach(input, (value, key) => {
       value && (homeData[key] = value);
     });
 

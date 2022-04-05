@@ -6,7 +6,8 @@ import { Product } from './product.entity';
 import * as _ from 'lodash';
 import { ContactService } from 'src/contact/contact.service';
 import { CategoryService } from './category/category.service';
-import { InputGetByCategory } from './product.model';
+import { InputGetByCategory, InputSetCategory, InputSetProduct } from './product.model';
+import { PartnerService } from 'src/customer/partner/partner.service';
 
 @Injectable()
 export class ProductService extends BaseService<Product> {
@@ -14,9 +15,14 @@ export class ProductService extends BaseService<Product> {
     @InjectRepository(Product) repo: Repository<Product>,
     private contactService: ContactService,
     private categoryService: CategoryService,
+    private partnerService: PartnerService
   ) {
     super(repo);
   }
+
+  /**
+   * Product
+   */
 
   async getOne(id: string, option?: FindOneOptions<Product>) {
     const product = await this.findById(id, option);
@@ -60,5 +66,51 @@ export class ProductService extends BaseService<Product> {
     ]);
 
     return { category, contact, categories };
+  }
+
+  async create(input: InputSetProduct) {
+    const [category, partner] = await Promise.all([
+      this.categoryService.get(input.categoryID),    
+      this.partnerService.get(input.partnerID)
+    ])
+
+    const product = this.repo.create({...input, category, partner});
+    
+    return this.repo.save(product)
+  }
+
+  async update(input: InputSetProduct) {
+    const [product, category, partner] = await Promise.all([
+      this.findById(input.id, {relations: ["category", "partner"]}),
+      this.categoryService.get(input.categoryID),
+      this.partnerService.get(input.partnerID)
+    ])
+
+    _.forEach(input, (value, key) => {
+      if(key === "categoryID") product.category = category;
+      else if(key === "partnerID") product.partner = partner;
+      else value && (product[key] = value);
+    })
+
+    return this.repo.save(product);
+  }
+
+  async delete(id: string){
+    return !!(await this.deleteOneById(id))
+  }
+
+  /**
+   * Category
+  */
+
+  setCategory(input: InputSetCategory) {
+    if(input.id) {
+      return this.categoryService.update(input);
+    }
+    return this.categoryService.create(input);
+  }
+
+  deleteCategory(id: string) {
+    return this.categoryService.delete(id);
   }
 }

@@ -34,7 +34,7 @@ export class CustomerService extends BaseService<Customer> {
   async update(input: CustomerSetInput) {
     const customer = await this.findById(input.id);
 
-    _.forEach(customer, (value, key) => {
+    _.forEach(input, (value, key) => {
         value && ( customer[key] = value )
     })
 
