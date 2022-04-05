@@ -21,13 +21,13 @@ export class PartnerService extends BaseService<Partner> {
   }
 
   async update(input: PartnerSetInput): Promise<Partner> {
-    const customer = await this.findById(input.id);
+    const partner = await this.findById(input.id);
     
-    _.forEach(customer, (value, key) => {
-      customer && (customer[key] = value)
+    _.forEach(partner, (value, key) => {
+      value && (partner[key] = value)
     })
 
-    return this.repo.save(customer);
+    return this.repo.save(partner);
   }
 
   async detele(id: string): Promise<boolean> {
