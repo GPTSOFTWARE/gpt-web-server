@@ -30,7 +30,7 @@ export class PartnerService extends BaseService<Partner> {
     return this.repo.save(partner);
   }
 
-  async detele(id: string): Promise<boolean> {
+  async delete(id: string): Promise<boolean> {
     return !!(await this.deleteOneById(id));
   }
 }
