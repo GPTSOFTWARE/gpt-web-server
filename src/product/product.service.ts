@@ -89,7 +89,7 @@ export class ProductService extends BaseService<Product> {
     _.forEach(input, (value, key) => {
       if(key === "categoryID") product.category = category;
       else if(key === "partnerID") product.partner = partner;
-      else value && (product[key] = value);
+      else if(key !== "id") value && (product[key] = value);
     })
 
     return this.repo.save(product);

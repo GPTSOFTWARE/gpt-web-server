@@ -33,7 +33,7 @@ export class HomeService extends BaseService<Home>{
     const homeData = await this.findById("1");
 
     _.forEach(input, (value, key) => {
-      value && (homeData[key] = value);
+      if(key !== "id") value && (homeData[key] = value);
     });
 
     return this.repo.save(homeData);

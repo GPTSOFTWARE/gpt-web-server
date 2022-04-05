@@ -27,8 +27,8 @@ export class CategoryService extends BaseService<Category> {
   async update(input: InputSetCategory) {
     const category = await this.findById(input.id);
 
-    _.forEach(category, (value, key) => {
-      value && (category[key] = value);
+    _.forEach(input, (value, key) => {
+      if(key !== "id") value && (category[key] = value);
     })
 
     return this.repo.save(category);

@@ -24,7 +24,7 @@ export class BaseService<T> {
   }
 
   protected async deleteOneById(id: string): Promise<DeleteResult> {
-    this.findById(id);
+    await this.findById(id);
     return this.repo.delete(id);
   }
 }

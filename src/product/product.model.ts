@@ -7,14 +7,14 @@ export type InputSetCategory = {
   id?: string;
   name: string;
   description: string;
-  banner: string;
+  banner?: string;
 }
 
 export type InputSetProduct = {
   id?: string;
   name: string;
   description: string;
-  banner: string;
+  banner?: string;
   categoryID: string;
   partnerID: string;
 }
