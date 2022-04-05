@@ -2,9 +2,9 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { ContactService } from 'src/contact/contact.service';
-import { Repository } from 'typeorm';
+import { FindOneOptions, Repository } from 'typeorm';
 import { Customer } from './customer.entity';
-import { CustomerSetInput, PartnerSetInput } from './customer.model';
+import { InputSetCustomer, InputSetPartner } from './customer.model';
 import { PartnerService } from './partner/partner.service';
 import * as _ from 'lodash';
 
@@ -18,7 +18,7 @@ export class CustomerService extends BaseService<Customer> {
     super(customerRepo);
   }
 
-  async get() {
+  async getAll() {
     const [customers, contact, partners] = await Promise.all([
       this.repo.find(),
       this.contactService.get(),
@@ -27,15 +27,22 @@ export class CustomerService extends BaseService<Customer> {
     return { customers, contact, partners };
   }
 
-  create(input: CustomerSetInput) {
-    return this.repo.save(input);  
+  get(id: string, options?: FindOneOptions<Customer>) {
+    return this.findById(id, options);
   }
 
-  async update(input: CustomerSetInput) {
+  create(input: InputSetCustomer) {
+
+    const customer = this.repo.create(input);
+
+    return this.repo.save(customer);  
+  }
+
+  async update(input: InputSetCustomer) {
     const customer = await this.findById(input.id);
 
-    _.forEach(input, (value, key) => {
-        value && ( customer[key] = value )
+    _.forOwn(input, (value, key) => {
+        if(key !== "id") value && ( customer[key] = value );
     })
 
     return this.repo.save(customer);
@@ -45,7 +52,7 @@ export class CustomerService extends BaseService<Customer> {
     return !!(await this.deleteOneById(id));
   }
 
-  setPartner(input: PartnerSetInput) {
+  setPartner(input: InputSetPartner) {
     if(input.id) {
       return this.partnerService.update(input);
     }

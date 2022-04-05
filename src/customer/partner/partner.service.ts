@@ -1,14 +1,19 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
-import { PartnerSetInput } from '../customer.model';
 import { Partner } from './partner.entity';
 import * as _ from 'lodash';
+import { InputSetPartner } from '../customer.model';
+import { CustomerService } from '../customer.service';
 
 @Injectable()
 export class PartnerService extends BaseService<Partner> {
-  constructor(@InjectRepository(Partner) repo: Repository<Partner>) {
+  constructor(
+    @InjectRepository(Partner) repo: Repository<Partner>,
+    @Inject(forwardRef(() => CustomerService))
+    private customerService: CustomerService
+  ) {
     super(repo);
   }
 
@@ -20,15 +25,27 @@ export class PartnerService extends BaseService<Partner> {
     return this.repo.findOne(id, options);
   }
 
-  create(input: PartnerSetInput): Promise<Partner> {
-    return this.repo.save(input);
+  async create(input: InputSetPartner): Promise<Partner> {
+    
+    const customer = await this.customerService.get(input.customerID);
+
+    const partner = this.repo.create({
+      ...input,
+      customer: customer
+    })
+
+    return this.repo.save(partner);
   }
 
-  async update(input: PartnerSetInput): Promise<Partner> {
-    const partner = await this.findById(input.id);
+  async update(input: InputSetPartner): Promise<Partner> {
+    const [partner, customer] = await Promise.all([
+      this.findById(input.id),
+      this.customerService.get(input.customerID)
+    ]);
     
     _.forEach(input, (value, key) => {
-      value && (partner[key] = value)
+      if(key === "customerID" && value) partner.customer = customer;
+      else if(key !== "id") value && (partner[key] = value)
     })
 
     return this.repo.save(partner);

@@ -1,14 +1,14 @@
-export type CustomerSetInput = {
+export type InputSetCustomer = {
     id?: string;
-    logo: string;
+    logo?: string;
     name: string;
     shortDes: string;
 }
 
-export type PartnerSetInput = {
+export type InputSetPartner = {
     id?: string;
-    logo: string;
+    logo?: string;
     name: string;
     description: string;
-    customerId: string;
+    customerID: string;
 }
