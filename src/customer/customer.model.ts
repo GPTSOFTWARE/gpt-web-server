@@ -1,5 +1,5 @@
 export type CustomerSetInput = {
-    id: string;
+    id?: string;
     logo: string;
     name: string;
     shortDes: string;
@@ -10,4 +10,5 @@ export type PartnerSetInput = {
     logo: string;
     name: string;
     description: string;
+    customerId: string;
 }

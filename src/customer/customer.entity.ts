@@ -1,5 +1,6 @@
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, OneToMany } from 'typeorm';
+import { Partner } from './partner/partner.entity';
 
 @Entity()
 export class Customer extends BaseEntity {
@@ -11,4 +12,7 @@ export class Customer extends BaseEntity {
 
   @Column()
   shortDes: string;
+
+  @OneToMany(() => Partner, partner => partner.customer)
+  partners: Partner[]
 }
