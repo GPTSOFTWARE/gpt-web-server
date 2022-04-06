@@ -10,7 +10,7 @@ export type HomeType = {
   categories: Category[];
 };
 
-export type HomeSetInput = {
+export type InputSetHome = {
   introduction: string;
   slogan: string;
 }

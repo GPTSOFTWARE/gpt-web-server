@@ -1,9 +1,7 @@
 import { Category } from 'src/product/category/category.entity';
 import { BaseEntity } from 'src/common/entities/base.entity';
 import { Partner } from 'src/customer/partner/partner.entity';
-import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
-import { Feature } from './feature/feature.entity';
-
+import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
 @Entity()
 export class Product extends BaseEntity {
   @Column()
@@ -32,7 +30,4 @@ export class Product extends BaseEntity {
   })
   @JoinColumn()
   category: Category;
-
-  @OneToMany(() => Feature, feature => feature.product)
-  features: Feature[]
 }

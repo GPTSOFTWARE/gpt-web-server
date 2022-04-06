@@ -6,7 +6,7 @@ import { ContactService } from 'src/contact/contact.service';
 import { CategoryService } from 'src/product/category/category.service';
 import { Repository } from 'typeorm';
 import { Home } from './home.entity';
-import { HomeSetInput, HomeType } from './home.model';
+import { HomeType, InputSetHome } from './home.model';
 import * as _ from 'lodash';
 
 @Injectable()
@@ -29,7 +29,7 @@ export class HomeService extends BaseService<Home>{
     return { home, contact, aboutUs, categories };
   }
 
-  async update(input: HomeSetInput): Promise<Home> {
+  async update(input: InputSetHome): Promise<Home> {
     const homeData = await this.findById("1");
 
     _.forEach(input, (value, key) => {
