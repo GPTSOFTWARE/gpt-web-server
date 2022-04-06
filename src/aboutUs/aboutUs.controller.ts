@@ -1,4 +1,5 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Render } from '@nestjs/common';
+import { InputSetAboutUs, } from './aboutUs.model';
 import { AboutUsService } from './aboutUs.service';
 
 @Controller('aboutus')
@@ -11,5 +12,10 @@ export class AboutUsController {
     return this.aboutUsService.get({
       relations: ['personnels', 'departments'],
     });
+  }
+
+  @Post()
+  post(@Body() body: InputSetAboutUs) {
+    return this.aboutUsService.update(body);
   }
 }

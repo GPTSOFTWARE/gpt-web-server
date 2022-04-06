@@ -1,3 +1,4 @@
+import { AboutUs } from 'src/aboutUs/aboutUs.entity';
 import { BaseEntity } from 'src/common/entities/base.entity';
 import { Product } from 'src/product/product.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
@@ -20,4 +21,8 @@ export class Partner extends BaseEntity {
   @ManyToOne(() => Customer, customer => customer.partners, {onDelete: "CASCADE"})
   @JoinColumn()
   customer: Customer
+
+  @ManyToOne(() => AboutUs, aboutUs => aboutUs.partners, {onDelete: "CASCADE"})
+  @JoinColumn()
+  aboutUs: AboutUs;
 }

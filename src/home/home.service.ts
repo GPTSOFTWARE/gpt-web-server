@@ -1,6 +1,5 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { AboutUsService } from 'src/aboutUs/aboutUs.service';
 import { BaseService } from 'src/common/services/base.service';
 import { ContactService } from 'src/contact/contact.service';
 import { CategoryService } from 'src/product/category/category.service';
@@ -14,7 +13,6 @@ export class HomeService extends BaseService<Home>{
   constructor(
     @InjectRepository(Home) repo: Repository<Home>,
     private contactService: ContactService,
-    private aboutUsService: AboutUsService,
     private categoryService: CategoryService,
   ) { super(repo) }
 

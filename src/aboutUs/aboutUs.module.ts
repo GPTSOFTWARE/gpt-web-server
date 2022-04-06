@@ -6,17 +6,15 @@ import { ProductModule } from 'src/product/product.module';
 import { AboutUsController } from './aboutUs.controller';
 import { AboutUs } from './aboutUs.entity';
 import { AboutUsService } from './aboutUs.service';
-import { Department } from './department/department.entity';
-import { DepartmentService } from './department/department.service';
 
 @Module({
   imports: [
-    TypeOrmModule.forFeature([AboutUs, Personnel, Department]),
+    TypeOrmModule.forFeature([AboutUs, Personnel]),
     ContactModule,
     ProductModule,
   ],
   controllers: [AboutUsController],
-  providers: [AboutUsService, DepartmentService],
+  providers: [AboutUsService],
   exports: [AboutUsService],
 })
 export class AboutUsModule {}
