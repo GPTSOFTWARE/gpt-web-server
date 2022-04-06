@@ -6,6 +6,7 @@ import { ContactModule } from './contact/contact.module';
 import { CustomerModule } from './customer/ customer.module';
 import { DepartmentModule } from './department/department.module';
 import { HomeModule } from './home/home.module';
+import { PersonnelModule } from './personnel/personnel.module';
 import { ProductModule } from './product/product.module';
 @Module({
   imports: [
@@ -15,6 +16,7 @@ import { ProductModule } from './product/product.module';
     CustomerModule,
     ProductModule,
     DepartmentModule,
+    PersonnelModule,
     TypeOrmModule.forRoot(),
   ],
 })
