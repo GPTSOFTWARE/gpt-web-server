@@ -19,14 +19,13 @@ export class HomeService extends BaseService<Home>{
   ) { super(repo) }
 
   async get(): Promise<HomeType> {
-    const [home, contact, aboutUs, categories] = await Promise.all([
+    const [home, contact, categories] = await Promise.all([
       this.findById("1"),
       this.contactService.get(),
-      this.aboutUsService.get({ select: ['goals', 'introduction'] }),
       this.categoryService.getAll({ relations: ['products'] }),
     ]);
 
-    return { home, contact, aboutUs, categories };
+    return { home, contact, categories };
   }
 
   async update(input: InputSetHome): Promise<Home> {

@@ -6,7 +6,6 @@ import { Home } from './home.entity';
 export type HomeType = {
   home: Home;
   contact: Contact;
-  aboutUs: AboutUs;
   categories: Category[];
 };
 
