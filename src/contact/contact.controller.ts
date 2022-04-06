@@ -1,4 +1,5 @@
-import { Controller, Get, Render } from '@nestjs/common';
+import { Body, Controller, Get, Post, Render } from '@nestjs/common';
+import { InputSetContact } from './contact.model';
 import { ContactService } from './contact.service';
 
 @Controller('contact')
@@ -7,7 +8,12 @@ export class ContactController {
 
   @Get()
   @Render('contact/index')
-  async get() {
-    return await this.contactService.get();
+  get() {
+    return this.contactService.get();
+  }
+
+  @Post()
+  update(@Body() body: InputSetContact) {
+    return this.contactService.update(body);
   }
 }

@@ -3,6 +3,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { FindOneOptions, Repository } from 'typeorm';
 import { Contact } from './contact.entity';
+import { InputSetContact } from './contact.model';
+import * as _ from 'lodash';
 
 @Injectable()
 export class ContactService extends BaseService<Contact> {
@@ -12,5 +14,15 @@ export class ContactService extends BaseService<Contact> {
 
   get(options?: FindOneOptions<Contact>): Promise<Contact> {
     return this.findById('1', options);
+  }
+
+  async update(input: InputSetContact) {
+    const contact = await this.findById('1');
+
+    _.forEach(input, (value, key) => {
+      value && (contact[key] = value);
+    })
+
+    return this.repo.save(contact);
   }
 }
