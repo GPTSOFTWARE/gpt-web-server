@@ -1,12 +1,11 @@
-import { AboutUs } from 'src/aboutUs/aboutUs.entity';
-import { Category } from 'src/product/category/category.entity';
 import { Contact } from 'src/contact/contact.entity';
+import { Product } from 'src/product/product.entity';
 import { Home } from './home.entity';
 
 export type HomeType = {
   home: Home;
   contact: Contact;
-  categories: Category[];
+  products: Product[];
 };
 
 export type InputSetHome = {

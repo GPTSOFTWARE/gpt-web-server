@@ -1,11 +1,11 @@
 <div class="about-us-product">
     <h1 class="category-aboutUs">OUR PRODUCTS</h2>
     <div class="product">
-        <% categories.forEach(category => { %>
+        <% products.forEach(product => { %>
             <div class="card-product">
-                <a href="product/<%= category.id %> ">
-                    <img src="/<%= category.banner %> " alt="" class="card-product-aboutus-img">
-                    <div class="card-product-name"><%= category.name %> </div>
+                <a href="product/<%= product.id %> ">
+                    <img src="/<%= product.banner %> " class="card-product-aboutus-img">
+                    <div class="card-product-name"><%= product.name %> </div>
                 </a>
             </div>
         <% }) %>

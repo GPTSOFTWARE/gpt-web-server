@@ -1,6 +1,6 @@
 import { AboutUs } from 'src/aboutUs/aboutUs.entity';
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Product } from 'src/product/product.entity';
+import { Project } from 'src/product/project/project.entity';
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { Customer } from '../customer.entity';
 
@@ -15,8 +15,8 @@ export class Partner extends BaseEntity {
   @Column({ type: 'text' })
   description: string;
 
-  @OneToMany(() => Product, (product) => product.partner)
-  products: Product[];
+  @OneToMany(() => Project, (project) => project.partner)
+  projects: Project[];
 
   @ManyToOne(() => Customer, customer => customer.partners, {onDelete: "CASCADE"})
   @JoinColumn()

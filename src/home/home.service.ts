@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { ContactService } from 'src/contact/contact.service';
-import { CategoryService } from 'src/product/category/category.service';
+import { ProductService } from 'src/product/product.service';
 import { Repository } from 'typeorm';
 import { Home } from './home.entity';
 import { HomeType, InputSetHome } from './home.model';
@@ -13,17 +13,17 @@ export class HomeService extends BaseService<Home>{
   constructor(
     @InjectRepository(Home) repo: Repository<Home>,
     private contactService: ContactService,
-    private categoryService: CategoryService,
+    private productService: ProductService,
   ) { super(repo) }
 
   async get(): Promise<HomeType> {
-    const [home, contact, categories] = await Promise.all([
+    const [home, contact, products] = await Promise.all([
       this.findById("1"),
       this.contactService.get(),
-      this.categoryService.getAll({ relations: ['products'] }),
+      this.productService.getAll({ relations: ['projects'] }),
     ]);
 
-    return { home, contact, categories };
+    return { home, contact, products };
   }
 
   async update(input: InputSetHome): Promise<Home> {

@@ -5,7 +5,7 @@ export class BaseService<T> {
   constructor(protected repo: Repository<T>) {}
 
   protected async findById(
-    id: string,
+    id?: string,
     options?: FindOneOptions<T>,
   ): Promise<T> {
     let result: T;

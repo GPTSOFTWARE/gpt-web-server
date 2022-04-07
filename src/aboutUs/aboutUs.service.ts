@@ -5,7 +5,7 @@ import { FindOneOptions, Repository } from 'typeorm';
 import { AboutUs } from './aboutUs.entity';
 import * as _ from 'lodash';
 import { ContactService } from 'src/contact/contact.service';
-import { CategoryService } from 'src/product/category/category.service';
+import { ProductService } from 'src/product/product.service';
 import { InputSetAboutUs } from './aboutUs.model';
 
 @Injectable()
@@ -13,7 +13,7 @@ export class AboutUsService extends BaseService<AboutUs> {
   constructor(
     @InjectRepository(AboutUs) aboutUsRepo: Repository<AboutUs>,
     private contactService: ContactService,
-    private categoryService: CategoryService
+    private categoryService: ProductService
   ) {
     super(aboutUsRepo);
   }
@@ -22,8 +22,8 @@ export class AboutUsService extends BaseService<AboutUs> {
     return this.findById("1");  
   }
 
-  async get(options?: FindOneOptions<AboutUs>): Promise<any> {
-    const [aboutUs, contact, categories] = await Promise.all([
+  async get(options?: FindOneOptions<AboutUs>) {
+    const [aboutUs, contact, products] = await Promise.all([
       this.findById('1', options),
       this.contactService.get(),
       this.categoryService.getAll(),
@@ -33,7 +33,7 @@ export class AboutUsService extends BaseService<AboutUs> {
       key === 'values' && (aboutUs[key] = value.replace(/\|/g, ', '));
     });
 
-    return { aboutUs, contact, categories };
+    return { aboutUs, contact, products };
   }
 
   async update(input: InputSetAboutUs) {
