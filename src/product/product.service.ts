@@ -49,10 +49,6 @@ export class ProductService extends BaseService<Product> {
     return {products, contact, index}
   }
 
-  getFrist(options?: FindOneOptions<Product>) {
-    return this.repo.findOne(options);
-  }
-
   getAll(options?: FindManyOptions<Product>) {
     return this.repo.find(options);
   }
