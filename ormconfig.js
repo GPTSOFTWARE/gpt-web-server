@@ -1,7 +1,7 @@
 module.exports = {
     type: 'mysql',
     host: process.env.DB_HOST || 'localhost',
-    port: parseInt(process.env.DB_PORT) || 3306,
+    port: process.env.DB_PORT || 3306,
     username: process.env.DB_UNAME,
     password: process.env.DB_PASS,
     database: process.env.DB_NAME,
