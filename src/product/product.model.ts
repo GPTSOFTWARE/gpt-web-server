@@ -20,6 +20,6 @@ export type InputSetProject = {
   name: string;
   description: string;
   banner?: string;
-  categoryID: string;
+  productID: string;
   partnerID: string;
 }

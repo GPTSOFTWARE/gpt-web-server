@@ -1,12 +1,12 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
-import { InputGetRequest, InputSetProduct } from './product.model';
+import { InputGetRequest, InputSetProduct, InputSetProject } from './product.model';
 import { Product } from './product.entity';
 import * as _ from 'lodash';
 import { ContactService } from 'src/contact/contact.service';
-import { ProjectService } from './project/project.service';
+import { ProjectService } from '../project/project.service';
 
 @Injectable()
 export class ProductService extends BaseService<Product> {
@@ -49,6 +49,10 @@ export class ProductService extends BaseService<Product> {
     return {products, contact, index}
   }
 
+  getOne(id: string, options?: FindOneOptions<Product>) {
+    return this.findById(id, options)
+  }
+
   getAll(options?: FindManyOptions<Product>) {
     return this.repo.find(options);
   }
@@ -70,4 +74,7 @@ export class ProductService extends BaseService<Product> {
   async delete(id: string) {
     return !!(await this.deleteOneById(id));
   }
+  /**
+   * PROJECT CRUD
+   */
 }

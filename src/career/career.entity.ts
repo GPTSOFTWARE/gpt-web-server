@@ -1,4 +1,4 @@
-import { Applicant } from './applicant/applicant.entity';
+import { Applicant } from '../applicant/applicant.entity';
 import { BaseEntity } from 'src/common/entities/base.entity';
 import { Department } from 'src/department/department.entity';
 import { Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';

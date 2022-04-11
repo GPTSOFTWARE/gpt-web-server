@@ -1,5 +1,6 @@
+import { AboutUs } from 'src/aboutUs/aboutUs.entity';
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, JoinColumn, OneToOne } from 'typeorm';
 
 @Entity()
 export class Contact extends BaseEntity {
@@ -23,4 +24,8 @@ export class Contact extends BaseEntity {
 
   @Column()
   phone: string;
+
+  @OneToOne(() => AboutUs, aboutUs => aboutUs)
+  @JoinColumn()
+  aboutUs: AboutUs;
 }

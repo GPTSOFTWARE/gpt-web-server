@@ -1,16 +1,19 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ContactModule } from 'src/contact/contact.module';
 import { CustomerController } from './customer.controller';
 import { Customer } from './customer.entity';
 import { CustomerService } from './customer.service';
-import { Partner } from './partner/partner.entity';
-import { PartnerService } from './partner/partner.service';
+import { PartnerModule } from 'src/partner/partner.module';
 
 @Module({
-  imports: [ContactModule, TypeOrmModule.forFeature([Customer, Partner])],
-  providers: [CustomerService, PartnerService],
+  imports: [
+    TypeOrmModule.forFeature([Customer]),
+    ContactModule,
+    forwardRef(() => PartnerModule)
+  ],
+  providers: [CustomerService],
   controllers: [CustomerController],
-  exports: [PartnerService]
+  exports: [CustomerService]
 })
 export class CustomerModule {}

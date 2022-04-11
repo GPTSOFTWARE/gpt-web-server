@@ -1,21 +1,22 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { ContactService } from 'src/contact/contact.service';
 import { FindOneOptions, Repository } from 'typeorm';
 import { Customer } from './customer.entity';
-import { InputSetCustomer, InputSetPartner } from './customer.model';
-import { PartnerService } from './partner/partner.service';
+import { InputSetCustomer } from './customer.model';
+import { PartnerService } from '../partner/partner.service';
 import * as _ from 'lodash';
 
 @Injectable()
 export class CustomerService extends BaseService<Customer> {
   constructor(
-    @InjectRepository(Customer) customerRepo: Repository<Customer>,
+    @InjectRepository(Customer) repo: Repository<Customer>,
     private contactService: ContactService,
+    @Inject(forwardRef(() => PartnerService))
     private partnerService: PartnerService,
   ) {
-    super(customerRepo);
+    super(repo);
   }
 
   async getAll() {
@@ -50,16 +51,5 @@ export class CustomerService extends BaseService<Customer> {
 
   async delete(id: string) {
     return !!(await this.deleteOneById(id));
-  }
-
-  setPartner(input: InputSetPartner) {
-    if(input.id) {
-      return this.partnerService.update(input);
-    }
-    return this.partnerService.create(input);
-  }
-
-  deletePartner(id: string) {
-    return this.partnerService.delete(id);
   }
 }
