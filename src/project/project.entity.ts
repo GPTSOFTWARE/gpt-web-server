@@ -1,7 +1,7 @@
 import { BaseEntity } from 'src/common/entities/base.entity';
-import { Partner } from 'src/customer/partner/partner.entity';
+import { Partner } from 'src/partner/partner.entity';
 import { Column, Entity, JoinColumn, ManyToOne } from 'typeorm';
-import { Product } from '../product.entity';
+import { Product } from '../product/product.entity';
 @Entity()
 export class Project extends BaseEntity {
   @Column()

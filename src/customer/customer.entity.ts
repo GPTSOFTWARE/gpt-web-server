@@ -1,6 +1,6 @@
 import { BaseEntity } from 'src/common/entities/base.entity';
 import { Column, Entity, OneToMany } from 'typeorm';
-import { Partner } from './partner/partner.entity';
+import { Partner } from '../partner/partner.entity';
 
 @Entity()
 export class Customer extends BaseEntity {

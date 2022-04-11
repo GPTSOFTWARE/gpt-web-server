@@ -1,8 +1,10 @@
 import { BaseEntity } from 'src/common/entities/base.entity';
 import { Personnel } from 'src/personnel/personnel.entity';
 import { Department } from 'src/department/department.entity';
-import { Column, Entity, OneToMany } from 'typeorm';
-import { Partner } from 'src/customer/partner/partner.entity';
+import { Column, Entity, JoinColumn, OneToMany, OneToOne } from 'typeorm';
+import { Partner } from 'src/partner/partner.entity';
+import { Product } from 'src/product/product.entity';
+import { Contact } from 'src/contact/contact.entity';
 
 @Entity()
 export class AboutUs extends BaseEntity {
@@ -26,4 +28,11 @@ export class AboutUs extends BaseEntity {
 
   @OneToMany(() => Partner, partner => partner.aboutUs)
   partners: Partner[];
+
+  @OneToMany(() => Product, product => product)
+  products: Product[];
+
+  @OneToOne(() => Contact, contact => contact.aboutUs)
+  @JoinColumn()
+  contact: Contact
 }

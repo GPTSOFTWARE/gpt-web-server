@@ -5,9 +5,7 @@ import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 
 @Entity()
 export class Department extends BaseEntity {
-  @ManyToOne(() => AboutUs, (abouUs) => abouUs.departments, {
-    onDelete: 'CASCADE',
-  })
+  @ManyToOne(() => AboutUs, (abouUs) => abouUs.departments)
   @JoinColumn()
   aboutUs: AboutUs;
 

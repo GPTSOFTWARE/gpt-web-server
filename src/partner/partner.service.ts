@@ -4,14 +4,13 @@ import { BaseService } from 'src/common/services/base.service';
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
 import { Partner } from './partner.entity';
 import * as _ from 'lodash';
-import { InputSetPartner } from '../customer.model';
-import { CustomerService } from '../customer.service';
+import { InputSetPartner } from '../customer/customer.model';
+import { CustomerService } from '../customer/customer.service';
 
 @Injectable()
 export class PartnerService extends BaseService<Partner> {
   constructor(
     @InjectRepository(Partner) repo: Repository<Partner>,
-    @Inject(forwardRef(() => CustomerService))
     private customerService: CustomerService
   ) {
     super(repo);

@@ -24,14 +24,4 @@ export class CustomerController {
   delete(@Body("id") id: string) {
     return this.customerService.delete(id);
   }
-
-  @Post("partner")
-  setPartner(@Body() body: InputSetPartner) {
-    return this.customerService.setPartner(body);
-  }
-
-  @Delete("partner")
-  deletePartner(@Body("id") id: string) {
-    return this.customerService.deletePartner(id);
-  }
 }
