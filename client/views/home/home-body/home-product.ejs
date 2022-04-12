@@ -5,7 +5,7 @@
         <% for( let i = 0; i < products.length; i++ ) { %>
             <div class="card-home-product">
                 <a href="/product/<%= products[i].id %>">
-                    <div class="card-image"><img src="/<%= products[i].banner %> " alt="GPT Cyber security"></div>
+                    <div class="card-image"><img src="<%= products[i].banner %> " alt="GPT Cyber security"></div>
                     <div class="card-title"><%= products[i].name %> </div>
                     <div class="card-description">
                         <%= products[i].description %>  
