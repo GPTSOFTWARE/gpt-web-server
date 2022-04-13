@@ -39,10 +39,16 @@ export class AboutUsService extends BaseService<AboutUs> {
   async update(input: InputSetAboutUs) {
     const aboutUs = await this.findById("1");
 
+    let logo: string;
+    if(input.logo) {
+      logo = this.uploadFile(input.logo, aboutUs.logo, "aboutUs")
+    }
+
     _.forEach(input, (value, key) => {
       if(value && (key === "goals" || key === "values")) {
         aboutUs[key] = value.join("|")
-      }else aboutUs[key] = value;
+      }else if(key = "logo") aboutUs.logo = logo;
+      else if(key !== "id") aboutUs[key] = value;
     })
 
     return this.repo.save(aboutUs);

@@ -1,5 +1,5 @@
 export type InputSetAboutUs = {
-    logo?: string;
+    logo?: Express.Multer.File;
     introduction: string;
     goals: string[];
     values: string[];

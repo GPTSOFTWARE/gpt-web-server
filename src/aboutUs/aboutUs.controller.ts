@@ -1,4 +1,5 @@
-import { Body, Controller, Delete, Get, Post, Render } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Post, Render, UploadedFile, UseGuards, UseInterceptors } from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
 import { InputSetAboutUs, } from './aboutUs.model';
 import { AboutUsService } from './aboutUs.service';
 
@@ -15,7 +16,11 @@ export class AboutUsController {
   }
 
   @Post()
-  post(@Body() body: InputSetAboutUs) {
+  @UseInterceptors(FileInterceptor('file'))
+  post(@Body() body: InputSetAboutUs, @UploadedFile() logo: Express.Multer.File) {
+    if(logo) {
+      body.logo = logo;
+    }
     return this.aboutUsService.update(body);
   }
 }
