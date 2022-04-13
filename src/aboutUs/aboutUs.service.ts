@@ -41,7 +41,8 @@ export class AboutUsService extends BaseService<AboutUs> {
 
     let logo: string;
     if(input.logo) {
-      logo = this.uploadFile(input.logo, aboutUs.logo, "aboutUs")
+      this.checkFormat(input.logo, ["jpg", "png"])
+      logo = this.uploadFile(input.logo, aboutUs.logo, "img/aboutUs")
     }
 
     _.forEach(input, (value, key) => {
