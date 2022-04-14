@@ -1,5 +1,15 @@
-import { Body, Controller, Delete, Get, Post, Render } from '@nestjs/common';
-import { InputSetCustomer, InputSetPartner } from './customer.model';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Post,
+  Render,
+  UploadedFile,
+  UseInterceptors,
+} from '@nestjs/common';
+import { FileInterceptor } from '@nestjs/platform-express';
+import { InputSetCustomer } from './customer.model';
 import { CustomerService } from './customer.service';
 
 @Controller('customer')
@@ -13,15 +23,22 @@ export class CustomerController {
   }
 
   @Post()
-  post(@Body() body: InputSetCustomer){
-    if(body.id) {
+  @UseInterceptors(FileInterceptor('file'))
+  post(
+    @Body() body: InputSetCustomer,
+    @UploadedFile() logo: Express.Multer.File,
+  ) {
+    if (logo) {
+      body.logo = logo;
+    }
+    if (body.id) {
       return this.customerService.update(body);
     }
     return this.customerService.create(body);
   }
 
   @Delete()
-  delete(@Body("id") id: string) {
+  delete(@Body('id') id: string) {
     return this.customerService.delete(id);
   }
 }

@@ -1,10 +1,8 @@
-import * as multer from "multer";
-import { join } from "path";
-import { staticFolder } from "./constant";
+import * as multer from 'multer';
 
 export const storage = multer.diskStorage({
-    filename: function(req, file, cb) {
-        const subfix = `${Date.now()}_${Math.round(Math.random() * 1E9)}`;
-        cb(null, `${subfix}_${file.originalname}`)
-    }
-})
+  filename: function (req, file, cb) {
+    const subfix = `${Date.now()}_${Math.round(Math.random() * 1e9)}`;
+    cb(null, `${subfix}_${file.originalname}`);
+  },
+});

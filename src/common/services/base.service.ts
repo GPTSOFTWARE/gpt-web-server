@@ -2,7 +2,7 @@ import { NotFoundException } from '@nestjs/common';
 import { DeleteResult, FindOneOptions, Repository } from 'typeorm';
 import { UtilService } from './util.service';
 
-export class BaseService<T> extends UtilService{
+export class BaseService<T> extends UtilService {
   constructor(protected repo: Repository<T>) {
     super();
   }

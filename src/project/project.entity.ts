@@ -16,7 +16,7 @@ export class Project extends BaseEntity {
   @Column({ type: 'text' })
   feature: string;
 
-  @Column()
+  @Column({ nullable: true })
   banner: string;
 
   @ManyToOne(() => Partner, (partner) => partner.projects, {

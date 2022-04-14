@@ -21,7 +21,7 @@ export class ContactService extends BaseService<Contact> {
 
     _.forEach(input, (value, key) => {
       value && (contact[key] = value);
-    })
+    });
 
     return this.repo.save(contact);
   }

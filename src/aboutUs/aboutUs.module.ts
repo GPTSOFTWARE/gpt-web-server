@@ -10,7 +10,7 @@ import { AboutUsService } from './aboutUs.service';
 
 @Module({
   imports: [
-    MulterModule.register({storage}),
+    MulterModule.register({ storage }),
     TypeOrmModule.forFeature([AboutUs]),
     ContactModule,
     ProductModule,

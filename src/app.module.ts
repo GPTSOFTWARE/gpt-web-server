@@ -22,7 +22,7 @@ import { ProjectModule } from './project/project.module';
     PersonnelModule,
     ProjectModule,
     PartnerModule,
-    TypeOrmModule.forRoot()
+    TypeOrmModule.forRoot(),
   ],
 })
 export class AppModule {}

@@ -8,7 +8,7 @@ export class Product extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   banner: string;
 
   @Column({ type: 'text' })
@@ -17,7 +17,7 @@ export class Product extends BaseEntity {
   @OneToMany(() => Project, (project) => project.product)
   projects: Project[];
 
-  @ManyToOne(() => AboutUs, aboutUs => aboutUs.products)
+  @ManyToOne(() => AboutUs, (aboutUs) => aboutUs.products)
   @JoinColumn()
   aboutUs: AboutUs;
 }

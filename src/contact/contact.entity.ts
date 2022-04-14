@@ -25,7 +25,7 @@ export class Contact extends BaseEntity {
   @Column()
   phone: string;
 
-  @OneToOne(() => AboutUs, aboutUs => aboutUs)
+  @OneToOne(() => AboutUs, (aboutUs) => aboutUs)
   @JoinColumn()
   aboutUs: AboutUs;
 }

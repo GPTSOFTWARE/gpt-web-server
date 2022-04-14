@@ -13,13 +13,13 @@ export class AboutUsService extends BaseService<AboutUs> {
   constructor(
     @InjectRepository(AboutUs) aboutUsRepo: Repository<AboutUs>,
     private contactService: ContactService,
-    private categoryService: ProductService
+    private categoryService: ProductService,
   ) {
     super(aboutUsRepo);
   }
 
   getOne() {
-    return this.findById("1");  
+    return this.findById('1');
   }
 
   async get(options?: FindOneOptions<AboutUs>) {
@@ -37,20 +37,20 @@ export class AboutUsService extends BaseService<AboutUs> {
   }
 
   async update(input: InputSetAboutUs) {
-    const aboutUs = await this.findById("1");
+    const aboutUs = await this.findById('1');
 
     let logo: string;
-    if(input.logo) {
-      this.checkFormat(input.logo, ["jpg", "png"])
-      logo = this.uploadFile(input.logo, aboutUs.logo, "img/aboutUs")
+    if (input.logo) {
+      this.checkFormat(input.logo, ['jpg', 'png']);
+      logo = this.uploadFile(input.logo, 'img/aboutUs', aboutUs.logo);
     }
 
     _.forEach(input, (value, key) => {
-      if(value && (key === "goals" || key === "values")) {
-        aboutUs[key] = value.join("|")
-      }else if(key = "logo") aboutUs.logo = logo;
-      else if(key !== "id") aboutUs[key] = value;
-    })
+      if (value && (key === 'goals' || key === 'values')) {
+        aboutUs[key] = value.join('|');
+      } else if ((key = 'logo')) aboutUs.logo = logo;
+      else if (key !== 'id') aboutUs[key] = value;
+    });
 
     return this.repo.save(aboutUs);
   }

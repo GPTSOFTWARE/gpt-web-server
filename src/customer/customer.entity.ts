@@ -13,6 +13,6 @@ export class Customer extends BaseEntity {
   @Column()
   shortDes: string;
 
-  @OneToMany(() => Partner, partner => partner.customer)
-  partners: Partner[]
+  @OneToMany(() => Partner, (partner) => partner.customer)
+  partners: Partner[];
 }

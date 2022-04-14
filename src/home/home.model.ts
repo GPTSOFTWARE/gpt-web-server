@@ -11,4 +11,4 @@ export type HomeType = {
 export type InputSetHome = {
   introduction: string;
   slogan: string;
-}
+};
