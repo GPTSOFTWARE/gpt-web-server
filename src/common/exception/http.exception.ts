@@ -15,9 +15,6 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const error = exception.message;
 
     switch(status){
-      case 403:
-        this.render(response, "admin/login")
-      break;
       case 401:
         this.render(response, "admin/login", {message: error})
       break;

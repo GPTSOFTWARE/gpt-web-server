@@ -1,4 +1,4 @@
-import { CanActivate, ExecutionContext, Injectable } from "@nestjs/common";
+import { CanActivate, ExecutionContext, Injectable, UnauthorizedException } from "@nestjs/common";
 import { Request, Response } from "express";
 import { Admin } from "src/admin/admin.entity";
 import { AdminService } from "src/admin/admin.service";
@@ -22,7 +22,7 @@ export class AuthGuard implements CanActivate{
             const admin: Admin = this.tokenService.verify(cookie)
             status = await this.adminService.isExist(admin);
         }catch {
-            status = false;
+            throw new UnauthorizedException("Let login!!!")
         }
         
         return status;
