@@ -33,23 +33,44 @@ export class CustomerService extends BaseService<Customer> {
   }
 
   create(input: InputSetCustomer) {
+    const logo = input.logo
+      ? this.handleUploadFile(input.logo, 'img/customer/logo', [
+          'jpg',
+          'png',
+          'wepb',
+        ])
+      : null;
 
-    const customer = this.repo.create(input);
+    const customer = this.repo.create({
+      ...input,
+      logo,
+    });
 
-    return this.repo.save(customer);  
+    return this.repo.save(customer);
   }
 
   async update(input: InputSetCustomer) {
     const customer = await this.findById(input.id);
+    const logo = input.logo
+      ? this.handleUploadFile(
+          input.logo,
+          'img/customer/logo',
+          ['jpg', 'png', 'webp'],
+          customer.logo,
+        )
+      : null;
 
     _.forOwn(input, (value, key) => {
-        if(key !== "id") value && ( customer[key] = value );
-    })
+      if (key === 'logo') customer.logo = logo;
+      else if (key !== 'id') value && (customer[key] = value);
+    });
 
     return this.repo.save(customer);
   }
 
   async delete(id: string) {
-    return !!(await this.deleteOneById(id));
+    const customer = await this.findById(id, { select: ['logo'] });
+    customer.logo && this.clearFile(customer.logo);
+    return !!(await this.repo.delete(id));
   }
 }

@@ -14,10 +14,21 @@ export class HttpExceptionFilter implements ExceptionFilter {
     const status = exception.getStatus();
     const error = exception.message;
 
-    response.render('pageError/index', {
-      title: status,
-      description: 'Page not found',
-      message: error,
-    });
+    switch(status){
+      case 401:
+        response.redirect(`/admin?error=${error}`)
+      break;
+      default:
+        this.render(response, 'pageError/index', {
+          title: status,
+          description: 'Page not found',
+          message: error,
+        })
+    }
   }
+
+  private render(res: Response, path: string, data?: object) {
+    res.render(path, data)
+  }
+
 }

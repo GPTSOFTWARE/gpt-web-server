@@ -11,33 +11,33 @@ import * as _ from 'lodash';
 export class DepartmentService extends BaseService<Department> {
   constructor(
     @InjectRepository(Department) repo: Repository<Department>,
-    private aboutUsService: AboutUsService
+    private aboutUsService: AboutUsService,
   ) {
     super(repo);
   }
 
-  getAll(options: FindManyOptions<Department>){
+  getAll(options: FindManyOptions<Department>) {
     return this.repo.find(options);
   }
 
-  get(id: string, options: FindOneOptions<Department>){
+  get(id: string, options: FindOneOptions<Department>) {
     return this.findById(id, options);
   }
 
-  async create(input: InputSetDepartment){
+  async create(input: InputSetDepartment) {
     const aboutUs = await this.aboutUsService.getOne();
 
-    const department = this.repo.create({...input, aboutUs})
+    const department = this.repo.create({ ...input, aboutUs });
 
     return this.repo.save(department);
   }
 
-  async update(input: InputSetDepartment){
+  async update(input: InputSetDepartment) {
     const department = await this.findById(input.id);
 
     _.forEach(input, (value, key) => {
-      if(value && key !== "id") department[key] = value;
-    })
+      if (value && key !== 'id') department[key] = value;
+    });
 
     return this.repo.save(department);
   }

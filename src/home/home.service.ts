@@ -9,16 +9,18 @@ import { HomeType, InputSetHome } from './home.model';
 import * as _ from 'lodash';
 
 @Injectable()
-export class HomeService extends BaseService<Home>{
+export class HomeService extends BaseService<Home> {
   constructor(
     @InjectRepository(Home) repo: Repository<Home>,
     private contactService: ContactService,
     private productService: ProductService,
-  ) { super(repo) }
+  ) {
+    super(repo);
+  }
 
   async get(): Promise<HomeType> {
     const [home, contact, products] = await Promise.all([
-      this.findById("1"),
+      this.findById('1'),
       this.contactService.get(),
       this.productService.getAll({ relations: ['projects'] }),
     ]);
@@ -27,10 +29,10 @@ export class HomeService extends BaseService<Home>{
   }
 
   async update(input: InputSetHome): Promise<Home> {
-    const homeData = await this.findById("1");
+    const homeData = await this.findById('1');
 
     _.forEach(input, (value, key) => {
-      if(key !== "id") value && (homeData[key] = value);
+      if (key !== 'id') value && (homeData[key] = value);
     });
 
     return this.repo.save(homeData);

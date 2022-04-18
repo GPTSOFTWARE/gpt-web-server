@@ -26,13 +26,13 @@ export class AboutUs extends BaseEntity {
   @OneToMany(() => Department, (department) => department.aboutUs)
   departments: Department[];
 
-  @OneToMany(() => Partner, partner => partner.aboutUs)
+  @OneToMany(() => Partner, (partner) => partner.aboutUs)
   partners: Partner[];
 
-  @OneToMany(() => Product, product => product)
+  @OneToMany(() => Product, (product) => product)
   products: Product[];
 
-  @OneToOne(() => Contact, contact => contact.aboutUs)
+  @OneToOne(() => Contact, (contact) => contact.aboutUs)
   @JoinColumn()
-  contact: Contact
+  contact: Contact;
 }

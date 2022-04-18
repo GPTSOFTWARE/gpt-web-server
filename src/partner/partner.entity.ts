@@ -18,11 +18,13 @@ export class Partner extends BaseEntity {
   @OneToMany(() => Project, (project) => project.partner)
   projects: Project[];
 
-  @ManyToOne(() => Customer, customer => customer.partners, {onDelete: "CASCADE"})
+  @ManyToOne(() => Customer, (customer) => customer.partners, {
+    onDelete: 'CASCADE',
+  })
   @JoinColumn()
-  customer: Customer
+  customer: Customer;
 
-  @ManyToOne(() => AboutUs, aboutUs => aboutUs.partners)
+  @ManyToOne(() => AboutUs, (aboutUs) => aboutUs.partners)
   @JoinColumn()
   aboutUs: AboutUs;
 }
