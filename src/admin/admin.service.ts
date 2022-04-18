@@ -9,6 +9,7 @@ import { CacheService } from 'src/common/services/cache.service';
 import { TokenService } from 'src/common/services/token.service';
 import { Repository } from 'typeorm';
 import { Admin } from './admin.entity';
+import { InputSetLogin } from './admin.model';
 
 @Injectable()
 export class AdminService extends BaseService<Admin> {
@@ -40,6 +41,6 @@ export class AdminService extends BaseService<Admin> {
   }
 
   async isExist(input: Admin){
-    return !!(await this.repo.findOne(input));
+    return !!(await this.findById(input.id));
   }
 }

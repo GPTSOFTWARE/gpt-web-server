@@ -16,7 +16,7 @@ export class HttpExceptionFilter implements ExceptionFilter {
 
     switch(status){
       case 401:
-        this.render(response, "admin/login", {message: error})
+        response.redirect(`/admin?error=${error}`)
       break;
       default:
         this.render(response, 'pageError/index', {

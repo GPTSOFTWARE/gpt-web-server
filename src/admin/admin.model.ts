@@ -1,4 +1,4 @@
-type InputSetLogin = {
+export type InputSetLogin = {
   username: string;
   password: string;
 };

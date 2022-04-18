@@ -4,6 +4,7 @@ import { AppModule } from './app.module';
 import { staticFolder, viewsFolder } from './common/utils/constant';
 import { HttpExceptionFilter } from './common/exception/http.exception';
 import * as cookieParser from 'cookie-parser';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
