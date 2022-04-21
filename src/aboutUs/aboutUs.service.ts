@@ -18,38 +18,34 @@ export class AboutUsService extends BaseService<AboutUs> {
     super(aboutUsRepo);
   }
 
-  getOne() {
-    return this.findById('1');
-  }
-
   async get(options?: FindOneOptions<AboutUs>) {
-    const [aboutUs, contact, products] = await Promise.all([
-      this.findById('1', options),
-      this.contactService.get(),
-      this.categoryService.getAll(),
-    ]);
+    const aboutUs = await this.repo.findOne(options);
     _.forEach(aboutUs, (value, key) => {
       key === 'goals' && (aboutUs[key] = value.split('|'));
       key === 'values' && (aboutUs[key] = value.replace(/\|/g, ', '));
     });
 
+    return aboutUs;
+  }
+
+  async getPage(options?: FindOneOptions<AboutUs>) {
+    const [aboutUs, contact, products] = await Promise.all([
+      this.get(options),
+      this.contactService.get(),
+      this.categoryService.getAll(),
+    ]);
+
     return { aboutUs, contact, products };
   }
 
   async update(input: InputSetAboutUs) {
-    const aboutUs = await this.findById('1');
-
-    let logo: string;
-    if (input.logo) {
-      this.checkFormat(input.logo, ['jpg', 'png']);
-      logo = this.uploadFile(input.logo, 'img/aboutUs', aboutUs.logo);
-    }
+    const aboutUs = await this.repo.findOne();
 
     _.forEach(input, (value, key) => {
       if (value && (key === 'goals' || key === 'values')) {
-        aboutUs[key] = value.join('|');
-      } else if ((key = 'logo')) aboutUs.logo = logo;
-      else if (key !== 'id') aboutUs[key] = value;
+        const content = value.join('|')
+        aboutUs[key] = content.replace(/(\|{2,})|(^\|)|(\|$)/g, "");
+      } else if (key !== 'id') aboutUs[key] = value;
     });
 
     return this.repo.save(aboutUs);

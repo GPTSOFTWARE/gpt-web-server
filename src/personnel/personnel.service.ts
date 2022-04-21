@@ -25,7 +25,7 @@ export class PersonnelService extends BaseService<Personnel> {
   }
 
   async create(input: InputSetPersonnel) {
-    const aboutUs = await this.aboutUsService.getOne();
+    const aboutUs = await this.aboutUsService.get();
 
     const data = _.cloneDeep(input);
     data.bio = input.bio.join('|');

@@ -18,7 +18,11 @@ export class HomeService extends BaseService<Home> {
     super(repo);
   }
 
-  async get(): Promise<HomeType> {
+  get() {
+    return this.repo.findOne();
+  }
+
+  async getHome(): Promise<HomeType> {
     const [home, contact, products] = await Promise.all([
       this.findById('1'),
       this.contactService.get(),

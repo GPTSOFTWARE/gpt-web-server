@@ -9,7 +9,7 @@ export class HomeController {
   @Get()
   @Render('home/index')
   async get() {
-    return this.homeService.get();
+    return this.homeService.getHome();
   }
 
   @Post()
