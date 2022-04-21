@@ -8,8 +8,6 @@ import { Contact } from 'src/contact/contact.entity';
 
 @Entity()
 export class AboutUs extends BaseEntity {
-  @Column()
-  logo: string;
 
   @Column({ type: 'text' })
   introduction: string;

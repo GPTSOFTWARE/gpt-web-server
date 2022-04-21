@@ -25,7 +25,7 @@ export class DepartmentService extends BaseService<Department> {
   }
 
   async create(input: InputSetDepartment) {
-    const aboutUs = await this.aboutUsService.getOne();
+    const aboutUs = await this.aboutUsService.get();
 
     const department = this.repo.create({ ...input, aboutUs });
 

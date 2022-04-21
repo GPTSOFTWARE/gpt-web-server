@@ -1,5 +1,6 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
+import { AboutUsModule } from 'src/aboutUs/aboutUs.module';
 import { CommonModule } from 'src/common/common.module';
 import { HomeModule } from 'src/home/home.module';
 import { AdminController } from './admin.controller';
@@ -10,7 +11,8 @@ import { AdminService } from './admin.service';
   imports: [
     TypeOrmModule.forFeature([Admin]),
     forwardRef(() => CommonModule),
-    HomeModule
+    HomeModule,
+    AboutUsModule
   ],
   controllers: [AdminController],
   providers: [AdminService],

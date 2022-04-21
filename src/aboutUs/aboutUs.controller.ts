@@ -3,11 +3,8 @@ import {
   Controller,
   Get,
   Post,
-  Render,
-  UploadedFile,
-  UseInterceptors,
+  Render
 } from '@nestjs/common';
-import { FileInterceptor } from '@nestjs/platform-express';
 import { InputSetAboutUs } from './aboutUs.model';
 import { AboutUsService } from './aboutUs.service';
 
@@ -18,20 +15,15 @@ export class AboutUsController {
   @Get()
   @Render('aboutUs/index')
   get() {
-    return this.aboutUsService.get({
+    return this.aboutUsService.getPage({
       relations: ['personnels', 'departments'],
     });
   }
 
   @Post()
-  @UseInterceptors(FileInterceptor('file'))
   post(
-    @Body() body: InputSetAboutUs,
-    @UploadedFile() logo: Express.Multer.File,
+    @Body() body: InputSetAboutUs
   ) {
-    if (logo) {
-      body.logo = logo;
-    }
     return this.aboutUsService.update(body);
   }
 }
