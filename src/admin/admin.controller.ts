@@ -1,6 +1,7 @@
 import { Body, Controller, Get, Post, Query, Redirect, Render, Res, UseGuards} from '@nestjs/common';
 import { Response } from 'express';
 import { AuthGuard } from 'src/common/guard/auth.guard';
+import { InputSetHome } from 'src/home/home.model';
 import { InputSetLogin } from './admin.model';
 import { AdminService } from './admin.service';
 
@@ -21,6 +22,20 @@ export class AdminController {
   @UseGuards(AuthGuard)
   @Render("admin/home/index")
   getHome() {
+    return this.adminService.getAdminHome();
+  }
+
+  @Post("home")
+  @UseGuards(AuthGuard)
+  @Redirect("/admin/home")
+  postHome(@Body() body: InputSetHome) {
+    return this.adminService.setHome(body);
+  }
+
+  @Get("blog")
+  @UseGuards(AuthGuard)
+  @Render("admin/blog/index")
+  getBlog() {
     return {}
   }
 

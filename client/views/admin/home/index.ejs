@@ -1,2 +1,8 @@
 <%- include("../head/head.ejs") %>
-<%- include("../tail/tail.ej") %>  
+    <div class="container-fluid">
+        <div class="row">
+            <%- include("../common/menu/index.ejs") %>
+            <%- include ("./content/index.ejs", {introduction, slogan}) %> 
+        </div> 
+    </div>
+<%- include("../tail/tail.ejs") %>  
