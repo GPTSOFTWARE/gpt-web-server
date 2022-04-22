@@ -116,10 +116,10 @@ export class AdminService extends BaseService<Admin> {
     //   throw new UnauthorizedException('Your password is incorrect');
     // }
 
-    const jwt = this.tokenService.sign({...admin});
-    await this.cacheService.setValue<string>(input.username, jwt, { ttl: 86400 })
+    // const jwt = this.tokenService.sign({...admin});
+    // await this.cacheService.setValue<string>(input.username, jwt, { ttl: 86400 })
 
-    return jwt;
+    return "";
   }
 
   async isExist(input: Admin){

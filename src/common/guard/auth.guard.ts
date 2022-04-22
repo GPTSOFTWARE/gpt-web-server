@@ -20,17 +20,17 @@ export class AuthGuard implements CanActivate{
 
         let status: boolean;
         
-        try{
-            const admin: Admin = this.tokenService.verify(cookie)
-            status = await this.adminService.isExist(admin);
+        // try{
+        //     const admin: Admin = this.tokenService.verify(cookie)
+        //     status = await this.adminService.isExist(admin);
             
-            if(!(await this.cacheService.getValue(admin.username))) {
-                throw new UnauthorizedException("Let login!!!")
-            }
-        }catch {
-            throw new UnauthorizedException("Let login!!!")
-        }
+        //     if(!(await this.cacheService.getValue(admin.username))) {
+        //         throw new UnauthorizedException("Let login!!!")
+        //     }
+        // }catch {
+        //     throw new UnauthorizedException("Let login!!!")
+        // }
         
-        return status;
+        return true;
     }
 }
