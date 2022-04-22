@@ -7,7 +7,6 @@ import { CacheService } from "./services/cache.service";
 import { TokenService } from "./services/token.service";
 
 const TokenModule = JwtModule.registerAsync({
-    imports: [ConfigModule],
     useFactory: async (configService: ConfigService) => ({
         secret: configService.get<string>('JWT_SECRET'),
         signOptions: {

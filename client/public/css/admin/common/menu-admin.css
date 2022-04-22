@@ -2,6 +2,9 @@
     background-color: #203239;
     height: 100vh;
     color: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
 }
 
 #admin-menu .head-menu {

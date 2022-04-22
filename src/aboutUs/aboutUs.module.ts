@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { storage } from 'src/common/utils/multer.config';
@@ -13,7 +13,7 @@ import { AboutUsService } from './aboutUs.service';
     MulterModule.register({ storage }),
     TypeOrmModule.forFeature([AboutUs]),
     ContactModule,
-    ProductModule,
+    forwardRef(() => ProductModule),
   ],
   controllers: [AboutUsController],
   providers: [AboutUsService],

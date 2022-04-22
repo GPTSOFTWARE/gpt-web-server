@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { FindOneOptions, Repository } from 'typeorm';
@@ -13,7 +13,7 @@ export class AboutUsService extends BaseService<AboutUs> {
   constructor(
     @InjectRepository(AboutUs) aboutUsRepo: Repository<AboutUs>,
     private contactService: ContactService,
-    private categoryService: ProductService,
+    @Inject(forwardRef(() => ProductService)) private categoryService: ProductService,
   ) {
     super(aboutUsRepo);
   }

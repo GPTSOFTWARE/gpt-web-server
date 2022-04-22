@@ -3,6 +3,8 @@ export type InputSetProject = {
   name: string;
   description: string;
   banner?: Express.Multer.File;
-  productID: string;
-  partnerID: string;
+  productID?: string;
+  partnerID?: string;
+  utility: string[]
+  feature: string[]
 };
