@@ -112,12 +112,12 @@ export class AdminService extends BaseService<Admin> {
     if (!admin) {
       throw new UnauthorizedException('Your username is incorrect!!');
     }
-    // if (!(await this.bcrypt.compare(input.password, admin.password))) {
-    //   throw new UnauthorizedException('Your password is incorrect');
-    // }
+    if (!(await this.bcrypt.compare(input.password, admin.password))) {
+      throw new UnauthorizedException('Your password is incorrect');
+    }
 
     // const jwt = this.tokenService.sign({...admin});
-    // await this.cacheService.setValue<string>(input.username, jwt, { ttl: 86400 })
+    await this.cacheService.setValue<string>(input.username, "", { ttl: 86400 })
 
     return "";
   }
