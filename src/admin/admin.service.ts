@@ -117,7 +117,7 @@ export class AdminService extends BaseService<Admin> {
     }
 
     const jwt = this.tokenService.sign({...admin});
-    await this.cacheService.setValue<string>(input.username, jwt, { ttl: 86400 })
+    // await this.cacheService.setValue<string>(input.username, jwt, { ttl: 86400 })
 
     return jwt;
   }
