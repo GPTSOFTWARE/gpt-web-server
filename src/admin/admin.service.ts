@@ -11,6 +11,10 @@ import { CacheService } from 'src/common/services/cache.service';
 import { TokenService } from 'src/common/services/token.service';
 import { InputSetHome } from 'src/home/home.model';
 import { HomeService } from 'src/home/home.service';
+import { InputGetRequest, InputSetProduct } from 'src/product/product.model';
+import { ProductService } from 'src/product/product.service';
+import { InputSetProject } from 'src/project/project.model';
+import { ProjectService } from 'src/project/project.service';
 import { Repository } from 'typeorm';
 import { Admin } from './admin.entity';
 import { InputSetLogin } from './admin.model';
@@ -23,7 +27,9 @@ export class AdminService extends BaseService<Admin> {
     private tokenService: TokenService,
     private cacheService: CacheService,
     private homeService: HomeService,
-    private aboutUsService: AboutUsService
+    private aboutUsService: AboutUsService,
+    private productService: ProductService,
+    private projectService: ProjectService
   ) {
     super(repo);
     this.bcrypt = bcrypt;
@@ -43,6 +49,61 @@ export class AdminService extends BaseService<Admin> {
 
   setAboutUs(input: InputSetAboutUs) {
     return this.aboutUsService.update(input);
+  }
+
+  async getProduct(input?: InputGetRequest, page?: string) {
+    let data;
+    if(input) {
+      data = await this.productService.getRequest(input)
+    }else {
+      data = await this.productService.getRequest()
+    }
+
+    if(page) {
+      return {...data, start: parseInt(page) * 4}
+    }
+    
+    return {...data, start: 0}
+  }
+
+  async getProducts(page?: string) {
+    const products = await this.productService.getAll();
+    if(page) {
+      return {products, start: parseInt(page) * 5 }
+    }
+
+    return {products, start: 0}
+  }
+
+  async getCategory(id: string) {
+    return this.productService.getOne(id)
+  }
+
+  setCategory(input: InputSetProduct) {
+    if(input.id){
+      return this.productService.update(input)
+    }
+    return this.productService.create(input)
+  }
+
+  deleteCategory(id: string) {
+    return this.productService.delete(id);
+  }
+
+  getProject(input: InputGetRequest) {
+    return this.productService.getRequest(input);
+    
+  }
+
+  setProject(input: InputSetProject) {
+    if(input.id) {
+      return this.projectService.update(input);
+    }
+    return this.projectService.create(input);
+  }
+
+  deleteProject(id: string) {
+    return this.projectService.delete(id);
   }
 
   async login(input: InputSetLogin) {

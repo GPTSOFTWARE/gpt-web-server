@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, forwardRef, Inject, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
@@ -7,6 +7,7 @@ import { Product } from './product.entity';
 import * as _ from 'lodash';
 import { ContactService } from 'src/contact/contact.service';
 import { ProjectService } from '../project/project.service';
+import { AboutUsService } from 'src/aboutUs/aboutUs.service';
 
 @Injectable()
 export class ProductService extends BaseService<Product> {
@@ -14,6 +15,7 @@ export class ProductService extends BaseService<Product> {
     @InjectRepository(Product) repo: Repository<Product>,
     private contactService: ContactService,
     private projectService: ProjectService,
+    @Inject(forwardRef(() => AboutUsService)) private aboutUsService: AboutUsService
   ) {
     super(repo);
   }
@@ -62,7 +64,8 @@ export class ProductService extends BaseService<Product> {
     return this.repo.find(options);
   }
 
-  create(input: InputSetProduct) {
+  async create(input: InputSetProduct) {
+    const aboutUs = await this.aboutUsService.get();
     const banner = input.banner
       ? this.handleUploadFile(input.banner, 'img/product/banner', [
           'png',
@@ -73,6 +76,7 @@ export class ProductService extends BaseService<Product> {
     const product = this.repo.create({
       ...input,
       banner,
+      aboutUs
     });
     return this.repo.save(product);
   }
@@ -96,7 +100,7 @@ export class ProductService extends BaseService<Product> {
   }
 
   async delete(id: string) {
-    const product = await this.findById(id, { select: ['banner'] });
+    const product = await this.findById(id);
     product.banner && this.clearFile(product.banner);
     return !!(await this.repo.delete(id));
   }

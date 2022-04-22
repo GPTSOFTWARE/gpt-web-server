@@ -1,5 +1,4 @@
 const btn_pluss = document.querySelectorAll(".btn-plus")
-console.log(btn_pluss)
 btn_pluss.forEach((btn_plus) => {
     btn_plus.addEventListener("click", () => {
         const target = document.querySelector(btn_plus.getAttribute("data-target"));
@@ -10,3 +9,28 @@ btn_pluss.forEach((btn_plus) => {
         `
     })
 })
+
+const btn_delete = document.querySelectorAll(".delete-project")
+btn_delete.forEach((btn) => {
+    btn.addEventListener("click", () => {
+        fetch(btn.getAttribute("data-path"), {
+            method: "DELETE",
+        }).then((res) => {
+            console.log(res.url)
+            window.location.href = `/admin${btn.getAttribute("data-redirect")}`
+            if(res.body) {
+                alert("Project is deleted")
+            }else {
+                alert("Delete project is failed")
+            }
+        })
+    })
+})
+
+function preview() {
+    frame.src = URL.createObjectURL(event.target.files[0]);
+}
+function clearImage() {
+    document.getElementById('formFile').value = null;
+    frame.src = "";
+}

@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { forwardRef, Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ContactModule } from 'src/contact/contact.module';
 import { Product } from './product.entity';
@@ -7,6 +7,7 @@ import { ProductController } from './product.controller';
 import { ProjectModule } from 'src/project/project.module';
 import { MulterModule } from '@nestjs/platform-express';
 import { storage } from 'src/common/utils/multer.config';
+import { AboutUsModule } from 'src/aboutUs/aboutUs.module';
 
 @Module({
   imports: [
@@ -14,6 +15,7 @@ import { storage } from 'src/common/utils/multer.config';
     ContactModule,
     ProjectModule,
     MulterModule.register({ storage }),
+    forwardRef(() => AboutUsModule)
   ],
   providers: [ProductService],
   controllers: [ProductController],
