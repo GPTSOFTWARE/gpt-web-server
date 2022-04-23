@@ -35,7 +35,7 @@ export class UtilService {
 
     this.clearTmp(file.path);
 
-    return `${path}`;
+    return `/${path}`;
   }
 
   clearTmp(tmpPath: string) {

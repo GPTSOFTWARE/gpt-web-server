@@ -3,6 +3,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { InputSetAboutUs } from 'src/aboutUs/aboutUs.model';
 import { AuthGuard } from 'src/common/guard/auth.guard';
+import { InputSetCustomer } from 'src/customer/customer.model';
 import { InputSetHome } from 'src/home/home.model';
 import { InputGetRequest, InputSetProduct } from 'src/product/product.model';
 import { InputSetProject } from 'src/project/project.model';
@@ -90,6 +91,27 @@ export class AdminController {
   @Render("admin/category/add/index")
   getAddCategory() {}
 
+  @Get("customer")
+  @UseGuards(AuthGuard)
+  @Render("admin/customer/index")
+  getCustomer(@Query("page") page: string) {
+    return this.adminService.getCustomer(page)
+  }
+
+  @Get("customer/edit")
+  @UseGuards(AuthGuard)
+  @Render("admin/customer/edit/index")
+  async getEditCutsomer(@Query("id") id: string) {
+    return {customer: await this.adminService.getDetailCustomer(id)};
+  }
+
+  @Get("customer/add")
+  @UseGuards(AuthGuard)
+  @Render("admin/customer/add/index")
+  async getAddCustomer(){
+    return {}
+  }
+
 // POST
 
   @Post("home")
@@ -130,6 +152,16 @@ export class AdminController {
     return category;
   }
 
+  @Post("customer")
+  @UseInterceptors(FileInterceptor("file"))
+  @UseGuards(AuthGuard)
+  async postCustomer(@Body() body: InputSetCustomer, @Res() res: Response, @UploadedFile() logo: Express.Multer.File) {
+    if(logo) body.logo = logo;
+    const customer = await this.adminService.setCustomer(body);
+    res.redirect(`/admin/customer/edit?id=${customer.id}`)
+    return customer;
+  }
+
   @Delete("product/:projectID")
   @Redirect("/admin/product")
   deleteProject(@Param("projectID") projectID: string ) {
@@ -139,10 +171,14 @@ export class AdminController {
   @Delete("category/:id")
   @Redirect("/admin/category")
   deleteCategory(@Param("id") id: string) {
-    console.log(id);
     return this.adminService.deleteCategory(id);
   }
 
+  @Delete("customer/:id")
+  @Redirect("/admin/customer")
+  deleteCustomer(@Param("id") id: string) {
+    return this.adminService.deleteCustomer(id);
+  }
   @Post('login')
   @Redirect('/admin/home')
   async login(@Res() res: Response, @Body() body: InputSetLogin) {

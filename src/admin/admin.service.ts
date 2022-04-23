@@ -9,6 +9,8 @@ import { AboutUsService } from 'src/aboutUs/aboutUs.service';
 import { BaseService } from 'src/common/services/base.service';
 import { CacheService } from 'src/common/services/cache.service';
 import { TokenService } from 'src/common/services/token.service';
+import { InputSetCustomer } from 'src/customer/customer.model';
+import { CustomerService } from 'src/customer/customer.service';
 import { InputSetHome } from 'src/home/home.model';
 import { HomeService } from 'src/home/home.service';
 import { InputGetRequest, InputSetProduct } from 'src/product/product.model';
@@ -29,7 +31,8 @@ export class AdminService extends BaseService<Admin> {
     private homeService: HomeService,
     private aboutUsService: AboutUsService,
     private productService: ProductService,
-    private projectService: ProjectService
+    private projectService: ProjectService,
+    private customerService: CustomerService
   ) {
     super(repo);
     this.bcrypt = bcrypt;
@@ -104,6 +107,30 @@ export class AdminService extends BaseService<Admin> {
 
   deleteProject(id: string) {
     return this.projectService.delete(id);
+  }
+
+  async getCustomer(page?: string) {
+    const customers = await this.customerService.getAll();
+    if(page) {
+      return {customers, start: parseInt(page) * 4}
+    }
+
+    return {customers, start: 0}
+  }
+
+  getDetailCustomer(id: string) {
+    return this.customerService.get(id)
+  }
+
+  setCustomer(input: InputSetCustomer) {
+    if(input.id) {
+      return this.customerService.update(input)
+    }
+    return this.customerService.create(input)
+  }
+
+  deleteCustomer(id: string) {
+    return this.customerService.delete(id)
   }
 
   async login(input: InputSetLogin) {
