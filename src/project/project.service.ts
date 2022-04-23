@@ -53,13 +53,17 @@ export class ProjectService extends BaseService<Project> {
         ])
       : null;
 
-    const project = this.repo.create({ 
-      ...input, 
-      product, 
+    const project = this.repo.create({
+      ...input,
+      product,
       partner,
       banner,
-      feature: Array.isArray(input.feature) ? input.feature.join("|").replace(/(\|{2,})|(^\|)|(\|$)/g, "") : input.feature,
-      utility: Array.isArray(input.utility) ? input.utility.join("|").replace(/(\|{2,})|(^\|)|(\|$)/g, "") : input.utility
+      feature: Array.isArray(input.feature)
+        ? input.feature.join('|').replace(/(\|{2,})|(^\|)|(\|$)/g, '')
+        : input.feature,
+      utility: Array.isArray(input.utility)
+        ? input.utility.join('|').replace(/(\|{2,})|(^\|)|(\|$)/g, '')
+        : input.utility,
     });
 
     return this.repo.save(project);
@@ -86,7 +90,8 @@ export class ProjectService extends BaseService<Project> {
       else if (key === 'partnerID') project.partner = partner;
       else if (key === 'banner') project.banner = banner;
       else if (key === 'feature' || key === 'utility') {
-        value && (project[key] = value.join("|").replace(/(\|{2,})|(^\|)|(\|$)/g, ""))
+        value &&
+          (project[key] = value.join('|').replace(/(\|{2,})|(^\|)|(\|$)/g, ''));
       } else if (key !== 'id') value && (project[key] = value);
     });
 

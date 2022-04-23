@@ -15,7 +15,7 @@ import { AboutUsModule } from 'src/aboutUs/aboutUs.module';
     ContactModule,
     ProjectModule,
     MulterModule.register({ storage }),
-    forwardRef(() => AboutUsModule)
+    forwardRef(() => AboutUsModule),
   ],
   providers: [ProductService],
   controllers: [ProductController],

@@ -14,9 +14,9 @@ import { ProductModule } from './product/product.module';
 import { ProjectModule } from './project/project.module';
 
 const EnvModule = ConfigModule.forRoot({
-  envFilePath: [".env"],
-  isGlobal: true
-})
+  envFilePath: ['.env'],
+  isGlobal: true,
+});
 
 @Module({
   imports: [
@@ -31,7 +31,7 @@ const EnvModule = ConfigModule.forRoot({
     PartnerModule,
     AdminModule,
     EnvModule,
-    DatabaseModule
+    DatabaseModule,
   ],
 })
 export class AppModule {}

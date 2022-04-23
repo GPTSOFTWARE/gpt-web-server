@@ -1,6 +1,6 @@
 export type InputSetPartner = {
   id?: string;
-  logo: string;
+  logo?: Express.Multer.File;
   name: string;
   description: string;
   customerID: string;

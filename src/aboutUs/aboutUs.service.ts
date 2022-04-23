@@ -13,7 +13,8 @@ export class AboutUsService extends BaseService<AboutUs> {
   constructor(
     @InjectRepository(AboutUs) aboutUsRepo: Repository<AboutUs>,
     private contactService: ContactService,
-    @Inject(forwardRef(() => ProductService)) private categoryService: ProductService,
+    @Inject(forwardRef(() => ProductService))
+    private categoryService: ProductService,
   ) {
     super(aboutUsRepo);
   }
@@ -43,8 +44,8 @@ export class AboutUsService extends BaseService<AboutUs> {
 
     _.forEach(input, (value, key) => {
       if (value && (key === 'goals' || key === 'values')) {
-        const content = value.join('|')
-        aboutUs[key] = content.replace(/(\|{2,})|(^\|)|(\|$)/g, "");
+        const content = value.join('|');
+        aboutUs[key] = content.replace(/(\|{2,})|(^\|)|(\|$)/g, '');
       } else if (key !== 'id') aboutUs[key] = value;
     });
 

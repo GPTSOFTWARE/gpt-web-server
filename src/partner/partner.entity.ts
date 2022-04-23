@@ -6,7 +6,7 @@ import { Customer } from '../customer/customer.entity';
 
 @Entity()
 export class Partner extends BaseEntity {
-  @Column()
+  @Column({nullable: true})
   logo: string;
 
   @Column()

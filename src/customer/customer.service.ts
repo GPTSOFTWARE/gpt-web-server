@@ -66,7 +66,7 @@ export class CustomerService extends BaseService<Customer> {
 
     _.forOwn(input, (value, key) => {
       if (key === 'logo') customer.logo = logo;
-      else if (key !== 'id') (customer[key] = value);
+      else if (key !== 'id') customer[key] = value;
     });
 
     return this.repo.save(customer);

@@ -1,7 +1,4 @@
-import {
-  Injectable,
-  UnauthorizedException,
-} from '@nestjs/common';
+import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import * as bcrypt from 'bcrypt';
 import { InputSetAboutUs } from 'src/aboutUs/aboutUs.model';
@@ -13,6 +10,8 @@ import { InputSetCustomer } from 'src/customer/customer.model';
 import { CustomerService } from 'src/customer/customer.service';
 import { InputSetHome } from 'src/home/home.model';
 import { HomeService } from 'src/home/home.service';
+import { InputSetPartner } from 'src/partner/partner.model';
+import { PartnerService } from 'src/partner/partner.service';
 import { InputGetRequest, InputSetProduct } from 'src/product/product.model';
 import { ProductService } from 'src/product/product.service';
 import { InputSetProject } from 'src/project/project.model';
@@ -32,22 +31,23 @@ export class AdminService extends BaseService<Admin> {
     private aboutUsService: AboutUsService,
     private productService: ProductService,
     private projectService: ProjectService,
-    private customerService: CustomerService
+    private customerService: CustomerService,
+    private partnerService: PartnerService
   ) {
     super(repo);
     this.bcrypt = bcrypt;
   }
 
   getAdminHome() {
-    return this.homeService.get()
+    return this.homeService.get();
   }
 
   setHome(input: InputSetHome) {
-    return this.homeService.update(input)
+    return this.homeService.update(input);
   }
 
   getAdminAboutUs() {
-    return this.aboutUsService.get()
+    return this.aboutUsService.get();
   }
 
   setAboutUs(input: InputSetAboutUs) {
@@ -56,37 +56,37 @@ export class AdminService extends BaseService<Admin> {
 
   async getProduct(input?: InputGetRequest, page?: string) {
     let data;
-    if(input) {
-      data = await this.productService.getRequest(input)
-    }else {
-      data = await this.productService.getRequest()
+    if (input) {
+      data = await this.productService.getRequest(input);
+    } else {
+      data = await this.productService.getRequest();
     }
 
-    if(page) {
-      return {...data, start: parseInt(page) * 4}
+    if (page) {
+      return { ...data, start: parseInt(page) * 4 };
     }
-    
-    return {...data, start: 0}
+
+    return { ...data, start: 0 };
   }
 
   async getProducts(page?: string) {
     const products = await this.productService.getAll();
-    if(page) {
-      return {products, start: parseInt(page) * 5 }
+    if (page) {
+      return { products, start: parseInt(page) * 5 };
     }
 
-    return {products, start: 0}
+    return { products, start: 0 };
   }
 
   async getCategory(id: string) {
-    return this.productService.getOne(id)
+    return this.productService.getOne(id);
   }
 
   setCategory(input: InputSetProduct) {
-    if(input.id){
-      return this.productService.update(input)
+    if (input.id) {
+      return this.productService.update(input);
     }
-    return this.productService.create(input)
+    return this.productService.create(input);
   }
 
   deleteCategory(id: string) {
@@ -95,11 +95,10 @@ export class AdminService extends BaseService<Admin> {
 
   getProject(input: InputGetRequest) {
     return this.productService.getRequest(input);
-    
   }
 
   setProject(input: InputSetProject) {
-    if(input.id) {
+    if (input.id) {
       return this.projectService.update(input);
     }
     return this.projectService.create(input);
@@ -111,26 +110,57 @@ export class AdminService extends BaseService<Admin> {
 
   async getCustomer(page?: string) {
     const customers = await this.customerService.getAll();
-    if(page) {
-      return {customers, start: parseInt(page) * 4}
+    if (page) {
+      return { customers, start: parseInt(page) * 4 };
     }
 
-    return {customers, start: 0}
+    return { customers, start: 0 };
   }
 
   getDetailCustomer(id: string) {
-    return this.customerService.get(id)
+    return this.customerService.get(id);
   }
 
   setCustomer(input: InputSetCustomer) {
-    if(input.id) {
-      return this.customerService.update(input)
+    if (input.id) {
+      return this.customerService.update(input);
     }
-    return this.customerService.create(input)
+    return this.customerService.create(input);
   }
 
   deleteCustomer(id: string) {
-    return this.customerService.delete(id)
+    return this.customerService.delete(id);
+  }
+
+  async getPartner(page: string) {
+    const partners = await this.partnerService.getAll();
+    if(page) {
+      return {partners, start: parseInt(page) * 4}
+    }
+    return {partners, start: 0}
+  }
+
+  async getDetailPartner(id: string) {
+    const [partner, customers] = await Promise.all([
+      this.partnerService.get(id, {relations: ["customer"]}),
+      this.customerService.getAll()
+    ])
+    return {partner, customers};
+  }
+
+  getAddPartner(){
+    return this.customerService.getAll()
+  }
+
+  deletePartner(id: string) {
+    return this.partnerService.delete(id)
+  }
+
+  setPartner(input: InputSetPartner) {
+    if(input.id) {
+      return this.partnerService.update(input)
+    }
+    return this.partnerService.create(input)
   }
 
   async login(input: InputSetLogin) {
@@ -143,13 +173,15 @@ export class AdminService extends BaseService<Admin> {
       throw new UnauthorizedException('Your password is incorrect');
     }
 
-    const jwt = this.tokenService.sign({...admin});
-    await this.cacheService.setValue<string>(input.username, jwt, { ttl: 86400 })
+    const jwt = this.tokenService.sign({ ...admin });
+    await this.cacheService.setValue<string>(input.username, jwt, {
+      ttl: 86400,
+    });
 
     return jwt;
   }
 
-  async isExist(input: Admin){
+  async isExist(input: Admin) {
     return !!(await this.findById(input.id));
   }
 }
