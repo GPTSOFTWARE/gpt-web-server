@@ -27,19 +27,41 @@ export class PersonnelService extends BaseService<Personnel> {
   async create(input: InputSetPersonnel) {
     const aboutUs = await this.aboutUsService.get();
 
-    const data = _.cloneDeep(input);
-    data.bio = input.bio.join('|');
+    const img = input.img
+      ? this.handleUploadFile(input.img, 'img/personnel/img', [
+          'png',
+          'jpg',
+          'webp',
+        ])
+      : null;
 
-    const personnel = this.repo.create({ ...data, aboutUs });
+    const personnel = this.repo.create({
+      ...input,
+      aboutUs,
+      img,
+      bio: Array.isArray(input.bio)
+        ? input.bio.join('|').replace(/(\|{2,})|(^\|)|(\|$)/g, '')
+        : input.bio,
+    });
 
     return this.repo.save(personnel);
   }
 
   async update(input: InputSetPersonnel) {
     const personnel = await this.findById(input.id);
+    const img = input.img
+      ? this.handleUploadFile(
+          input.img,
+          'img/personnel/img',
+          ['png', 'jpg', 'webp'],
+          personnel.img,
+        )
+      : personnel.img;
 
     _.forEach(input, (value, key) => {
-      if (value && key === 'bio') personnel.bio = value.join('|');
+      if (value && key === 'bio')
+        personnel.bio = value.join('|').replace(/(\|{2,})|(^\|)|(\|$)/g, '');
+      else if (key === 'img') personnel.img = img;
       else if (key !== 'id') value && (personnel[key] = value);
     });
 
@@ -47,6 +69,8 @@ export class PersonnelService extends BaseService<Personnel> {
   }
 
   async delete(id: string) {
-    return !!(await this.deleteOneById(id));
+    const personnel = await this.findById(id);
+    personnel.img && this.clearFile(personnel.img);
+    return !!(await this.repo.delete(id));
   }
 }

@@ -21,6 +21,7 @@ import { InputSetCustomer } from 'src/customer/customer.model';
 import { InputSetDepartment } from 'src/department/department.model';
 import { InputSetHome } from 'src/home/home.model';
 import { InputSetPartner } from 'src/partner/partner.model';
+import { InputSetPersonnel } from 'src/personnel/personnel.model';
 import { InputGetRequest, InputSetProduct } from 'src/product/product.model';
 import { InputSetProject } from 'src/project/project.model';
 import { InputSetLogin } from './admin.model';
@@ -166,7 +167,6 @@ export class AdminController {
     return this.adminService.deleteCategory(id);
   }
 
-
   // Customer
 
   @Get('customer')
@@ -266,7 +266,7 @@ export class AdminController {
   @UseGuards(AuthGuard)
   @Render('admin/department/edit/index')
   async getEditDepartment(@Query('id') id: string) {
-    return {department: await this.adminService.getDetailDepartment(id)};
+    return { department: await this.adminService.getDetailDepartment(id) };
   }
 
   @Get('department/add')
@@ -294,7 +294,49 @@ export class AdminController {
   deleteDepartment(@Param('id') id: string) {
     return this.adminService.deleteDepartment(id);
   }
-  
+
+  // Personnel
+
+  @Get('personnel')
+  @UseGuards(AuthGuard)
+  @Render('admin/personnel/index')
+  getPersonnel(@Query('page') page: string) {
+    return this.adminService.getPersonnel(page);
+  }
+
+  @Get('personnel/edit')
+  @UseGuards(AuthGuard)
+  @Render('admin/personnel/edit/index')
+  async getEditPersonnel(@Query('id') id: string) {
+    return { personnel: await this.adminService.getDetailPersonnel(id) };
+  }
+
+  @Get('personnel/add')
+  @UseGuards(AuthGuard)
+  @Render('admin/personnel/add/index')
+  async getAddPersonnel() {}
+
+  @Post('personnel')
+  @UseInterceptors(FileInterceptor('file'))
+  @UseGuards(AuthGuard)
+  async postPersonnel(
+    @Body() body: InputSetPersonnel,
+    @Res() res: Response,
+    @UploadedFile() img: Express.Multer.File,
+  ) {
+    if (img) body.img = img;
+    const personnel = await this.adminService.setPersonnel(body);
+    res.redirect(`/admin/personnel/edit?id=${personnel.id}`);
+    return personnel;
+  }
+
+  @Delete('personnel/:id')
+  @UseGuards(AuthGuard)
+  @Redirect('/admin/personnel')
+  deletePersonnel(@Param('id') id: string) {
+    return this.adminService.deletePersonnel(id);
+  }
+
   // Login
 
   @Post('login')

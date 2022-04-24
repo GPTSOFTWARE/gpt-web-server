@@ -14,6 +14,8 @@ import { InputSetHome } from 'src/home/home.model';
 import { HomeService } from 'src/home/home.service';
 import { InputSetPartner } from 'src/partner/partner.model';
 import { PartnerService } from 'src/partner/partner.service';
+import { InputSetPersonnel } from 'src/personnel/personnel.model';
+import { PersonnelService } from 'src/personnel/personnel.service';
 import { InputGetRequest, InputSetProduct } from 'src/product/product.model';
 import { ProductService } from 'src/product/product.service';
 import { InputSetProject } from 'src/project/project.model';
@@ -36,6 +38,7 @@ export class AdminService extends BaseService<Admin> {
     private customerService: CustomerService,
     private partnerService: PartnerService,
     private departmentService: DepartmentService,
+    private personnelService: PersonnelService,
   ) {
     super(repo);
     this.bcrypt = bcrypt;
@@ -56,6 +59,8 @@ export class AdminService extends BaseService<Admin> {
   setAboutUs(input: InputSetAboutUs) {
     return this.aboutUsService.update(input);
   }
+
+  // Product
 
   async getProduct(input?: InputGetRequest, page?: string) {
     let data;
@@ -81,6 +86,8 @@ export class AdminService extends BaseService<Admin> {
     return { products, start: 0 };
   }
 
+  // Category
+
   async getCategory(id: string) {
     return this.productService.getOne(id);
   }
@@ -96,6 +103,8 @@ export class AdminService extends BaseService<Admin> {
     return this.productService.delete(id);
   }
 
+  // Project
+
   getProject(input: InputGetRequest) {
     return this.productService.getRequest(input);
   }
@@ -110,6 +119,8 @@ export class AdminService extends BaseService<Admin> {
   deleteProject(id: string) {
     return this.projectService.delete(id);
   }
+
+  // Customer
 
   async getCustomer(page?: string) {
     const customers = await this.customerService.getAll();
@@ -134,6 +145,8 @@ export class AdminService extends BaseService<Admin> {
   deleteCustomer(id: string) {
     return this.customerService.delete(id);
   }
+
+  // Partner
 
   async getPartner(page: string) {
     const partners = await this.partnerService.getAll();
@@ -166,6 +179,8 @@ export class AdminService extends BaseService<Admin> {
     return this.partnerService.create(input);
   }
 
+  // Department
+
   async getDepartment(page: string) {
     const departments = await this.departmentService.getAll();
     if (page) {
@@ -180,15 +195,43 @@ export class AdminService extends BaseService<Admin> {
   }
 
   setDepartment(input: InputSetDepartment) {
-    if(input.id) {
-      return this.departmentService.update(input)
+    if (input.id) {
+      return this.departmentService.update(input);
     }
-    return this.departmentService.create(input)
+    return this.departmentService.create(input);
   }
 
   deleteDepartment(id: string) {
     return this.departmentService.delete(id);
   }
+
+  // Personnel
+
+  async getPersonnel(page: string) {
+    const personnels = await this.personnelService.getAll();
+    if (page) {
+      return { personnels, start: parseInt(page) * 4 };
+    }
+
+    return { personnels, start: 0 };
+  }
+
+  getDetailPersonnel(id: string) {
+    return this.personnelService.get(id);
+  }
+
+  setPersonnel(input: InputSetPersonnel) {
+    if (input.id) {
+      return this.personnelService.update(input);
+    }
+    return this.personnelService.create(input);
+  }
+
+  deletePersonnel(id: string) {
+    return this.personnelService.delete(id);
+  }
+
+  // logo
 
   async login(input: InputSetLogin) {
     const admin = await this.repo.findOne({ username: input.username });

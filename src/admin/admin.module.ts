@@ -8,6 +8,7 @@ import { CustomerModule } from 'src/customer/ customer.module';
 import { DepartmentModule } from 'src/department/department.module';
 import { HomeModule } from 'src/home/home.module';
 import { PartnerModule } from 'src/partner/partner.module';
+import { PersonnelModule } from 'src/personnel/personnel.module';
 import { ProductModule } from 'src/product/product.module';
 import { ProjectModule } from 'src/project/project.module';
 import { AdminController } from './admin.controller';
@@ -25,6 +26,7 @@ import { AdminService } from './admin.service';
     CustomerModule,
     PartnerModule,
     DepartmentModule,
+    PersonnelModule,
     MulterModule.register({ storage }),
   ],
   controllers: [AdminController],
