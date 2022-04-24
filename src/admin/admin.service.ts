@@ -8,6 +8,8 @@ import { CacheService } from 'src/common/services/cache.service';
 import { TokenService } from 'src/common/services/token.service';
 import { InputSetCustomer } from 'src/customer/customer.model';
 import { CustomerService } from 'src/customer/customer.service';
+import { InputSetDepartment } from 'src/department/department.model';
+import { DepartmentService } from 'src/department/department.service';
 import { InputSetHome } from 'src/home/home.model';
 import { HomeService } from 'src/home/home.service';
 import { InputSetPartner } from 'src/partner/partner.model';
@@ -32,7 +34,8 @@ export class AdminService extends BaseService<Admin> {
     private productService: ProductService,
     private projectService: ProjectService,
     private customerService: CustomerService,
-    private partnerService: PartnerService
+    private partnerService: PartnerService,
+    private departmentService: DepartmentService,
   ) {
     super(repo);
     this.bcrypt = bcrypt;
@@ -134,33 +137,57 @@ export class AdminService extends BaseService<Admin> {
 
   async getPartner(page: string) {
     const partners = await this.partnerService.getAll();
-    if(page) {
-      return {partners, start: parseInt(page) * 4}
+    if (page) {
+      return { partners, start: parseInt(page) * 4 };
     }
-    return {partners, start: 0}
+    return { partners, start: 0 };
   }
 
   async getDetailPartner(id: string) {
     const [partner, customers] = await Promise.all([
-      this.partnerService.get(id, {relations: ["customer"]}),
-      this.customerService.getAll()
-    ])
-    return {partner, customers};
+      this.partnerService.get(id, { relations: ['customer'] }),
+      this.customerService.getAll(),
+    ]);
+    return { partner, customers };
   }
 
-  getAddPartner(){
-    return this.customerService.getAll()
+  getAddPartner() {
+    return this.customerService.getAll();
   }
 
   deletePartner(id: string) {
-    return this.partnerService.delete(id)
+    return this.partnerService.delete(id);
   }
 
   setPartner(input: InputSetPartner) {
-    if(input.id) {
-      return this.partnerService.update(input)
+    if (input.id) {
+      return this.partnerService.update(input);
     }
-    return this.partnerService.create(input)
+    return this.partnerService.create(input);
+  }
+
+  async getDepartment(page: string) {
+    const departments = await this.departmentService.getAll();
+    if (page) {
+      return { departments, start: parseInt(page) * 4 };
+    }
+
+    return { departments, start: 0 };
+  }
+
+  getDetailDepartment(id: string) {
+    return this.departmentService.get(id);
+  }
+
+  setDepartment(input: InputSetDepartment) {
+    if(input.id) {
+      return this.departmentService.update(input)
+    }
+    return this.departmentService.create(input)
+  }
+
+  deleteDepartment(id: string) {
+    return this.departmentService.delete(id);
   }
 
   async login(input: InputSetLogin) {

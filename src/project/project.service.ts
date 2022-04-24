@@ -83,7 +83,7 @@ export class ProjectService extends BaseService<Project> {
           ['png', 'jpg', 'webp'],
           project.banner,
         )
-      : null;
+      : project.banner;
 
     _.forEach(input, (value, key) => {
       if (key === 'productID') project.product = product;

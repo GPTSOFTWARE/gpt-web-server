@@ -62,7 +62,7 @@ export class CustomerService extends BaseService<Customer> {
           ['jpg', 'png', 'webp'],
           customer.logo,
         )
-      : null;
+      : customer.logo;
 
     _.forOwn(input, (value, key) => {
       if (key === 'logo') customer.logo = logo;

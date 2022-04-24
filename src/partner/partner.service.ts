@@ -25,8 +25,10 @@ export class PartnerService extends BaseService<Partner> {
   }
 
   async create(input: InputSetPartner): Promise<Partner> {
-    const customer = input.customerID ? await this.customerService.get(input.customerID) : null;
-    console.log(input.customerID)
+    const customer = input.customerID
+      ? await this.customerService.get(input.customerID)
+      : null;
+    console.log(input.customerID);
     const logo = input.logo
       ? this.handleUploadFile(input.logo, 'img/partner/logo', [
           'png',
@@ -57,10 +59,11 @@ export class PartnerService extends BaseService<Partner> {
           ['png', 'jpg', 'web'],
           partner.logo,
         )
-      : null;
+      : partner.logo;
 
     _.forEach(input, (value, key) => {
       if (key === 'customerID' && value) partner.customer = customer;
+      else if (key === 'logo') partner.logo = logo;
       else if (key !== 'id') value && (partner[key] = value);
     });
 
@@ -69,7 +72,7 @@ export class PartnerService extends BaseService<Partner> {
 
   async delete(id: string): Promise<boolean> {
     const partner = await this.findById(id);
-    partner.logo && this.clearFile(partner.logo)
+    partner.logo && this.clearFile(partner.logo);
     return !!(await this.repo.delete(id));
   }
 }

@@ -18,6 +18,7 @@ import { Response } from 'express';
 import { InputSetAboutUs } from 'src/aboutUs/aboutUs.model';
 import { AuthGuard } from 'src/common/guard/auth.guard';
 import { InputSetCustomer } from 'src/customer/customer.model';
+import { InputSetDepartment } from 'src/department/department.model';
 import { InputSetHome } from 'src/home/home.model';
 import { InputSetPartner } from 'src/partner/partner.model';
 import { InputGetRequest, InputSetProduct } from 'src/product/product.model';
@@ -38,12 +39,7 @@ export class AdminController {
     return { message: null };
   }
 
-  @Get('blog')
-  @UseGuards(AuthGuard)
-  @Render('admin/blog/index')
-  getBlog() {
-    return {};
-  }
+  // Home
 
   @Get('home')
   @UseGuards(AuthGuard)
@@ -52,11 +48,27 @@ export class AdminController {
     return this.adminService.getAdminHome();
   }
 
+  @Post('home')
+  @UseGuards(AuthGuard)
+  @Redirect('/admin/home')
+  postHome(@Body() body: InputSetHome) {
+    return this.adminService.setHome(body);
+  }
+
+  // About Us
+
   @Get('aboutus')
   @UseGuards(AuthGuard)
   @Render('admin/aboutUs/index')
   getAboutUs() {
     return this.adminService.getAdminAboutUs();
+  }
+
+  @Post('aboutus')
+  @UseGuards(AuthGuard)
+  @Redirect('/admin/aboutus')
+  postAboutUs(@Body() body: InputSetAboutUs) {
+    return this.adminService.setAboutUs(body);
   }
 
   // Product
@@ -85,6 +97,31 @@ export class AdminController {
     return this.adminService.getProducts();
   }
 
+  @Post('product/project')
+  @UseInterceptors(FileInterceptor('file'))
+  @UseGuards(AuthGuard)
+  async postProject(
+    @Body() body: InputSetProject,
+    @Res() res: Response,
+    @UploadedFile() banner: Express.Multer.File,
+  ) {
+    if (banner) {
+      body.banner = banner;
+    }
+    const project = await this.adminService.setProject(body);
+    res.redirect(
+      `/admin/product/edit?productID=${project.product.id}&projectID=${project.id}`,
+    );
+    return project;
+  }
+
+  @Delete('product/:projectID')
+  @UseGuards(AuthGuard)
+  @Redirect('/admin/product')
+  deleteProject(@Param('projectID') projectID: string) {
+    return this.adminService.deleteProject(projectID);
+  }
+
   // Category
 
   @Get('category')
@@ -106,7 +143,31 @@ export class AdminController {
   @Render('admin/category/add/index')
   getAddCategory() {}
 
-// Customer
+  @Post('category')
+  @UseInterceptors(FileInterceptor('file'))
+  @UseGuards(AuthGuard)
+  async postCategory(
+    @Body() body: InputSetProduct,
+    @Res() res: Response,
+    @UploadedFile() banner: Express.Multer.File,
+  ) {
+    if (banner) {
+      body.banner = banner;
+    }
+    const category = await this.adminService.setCategory(body);
+    res.redirect(`/admin/category/edit?id=${category.id}`);
+    return category;
+  }
+
+  @Delete('category/:id')
+  @UseGuards(AuthGuard)
+  @Redirect('/admin/category')
+  deleteCategory(@Param('id') id: string) {
+    return this.adminService.deleteCategory(id);
+  }
+
+
+  // Customer
 
   @Get('customer')
   @UseGuards(AuthGuard)
@@ -125,82 +186,7 @@ export class AdminController {
   @Get('customer/add')
   @UseGuards(AuthGuard)
   @Render('admin/customer/add/index')
-  async getAddCustomer() {
-    return {};
-  }
-
-// Partner
-
-  @Get("partner")
-  @UseGuards(AuthGuard)
-  @Render("admin/partner/index")
-  getPartner(@Query("page") page: string) {
-    return this.adminService.getPartner(page);  
-  }
-
-  @Get("partner/edit")
-  @UseGuards(AuthGuard)
-  @Render("admin/partner/edit/index")
-  getEditPartner(@Query("id") id: string) {
-    return this.adminService.getDetailPartner(id)
-  }
-
-  @Get("partner/add")
-  @UseGuards(AuthGuard)
-  @Render("admin/partner/add/index")
-  async getAddPartner() {
-    return {customers: await this.adminService.getAddPartner()};
-  }
-
-  // POST
-
-  @Post('home')
-  @UseGuards(AuthGuard)
-  @Redirect('/admin/home')
-  postHome(@Body() body: InputSetHome) {
-    return this.adminService.setHome(body);
-  }
-
-  @Post('aboutus')
-  @UseGuards(AuthGuard)
-  @Redirect('/admin/aboutus')
-  postAboutUs(@Body() body: InputSetAboutUs) {
-    return this.adminService.setAboutUs(body);
-  }
-
-  @Post('product/project')
-  @UseInterceptors(FileInterceptor('file'))
-  @UseGuards(AuthGuard)
-  async postProject(
-    @Body() body: InputSetProject,
-    @Res() res: Response,
-    @UploadedFile() banner: Express.Multer.File,
-  ) {
-    if (banner) {
-      body.banner = banner;
-    }
-    const project = await this.adminService.setProject(body);
-    res.redirect(
-      `/admin/product/edit?productID=${project.product.id}&projectID=${project.id}`,
-    );
-    return project;
-  }
-
-  @Post('category')
-  @UseInterceptors(FileInterceptor('file'))
-  @UseGuards(AuthGuard)
-  async postCategory(
-    @Body() body: InputSetProduct,
-    @Res() res: Response,
-    @UploadedFile() banner: Express.Multer.File,
-  ) {
-    if (banner) {
-      body.banner = banner;
-    }
-    const category = await this.adminService.setCategory(body);
-    res.redirect(`/admin/category/edit?id=${category.id}`);
-    return category;
-  }
+  async getAddCustomer() {}
 
   @Post('customer')
   @UseInterceptors(FileInterceptor('file'))
@@ -216,42 +202,100 @@ export class AdminController {
     return customer;
   }
 
-  @Post("partner")
+  @Delete('customer/:id')
+  @UseGuards(AuthGuard)
+  @Redirect('/admin/customer')
+  deleteCustomer(@Param('id') id: string) {
+    return this.adminService.deleteCustomer(id);
+  }
+
+  // Partner
+
+  @Get('partner')
+  @UseGuards(AuthGuard)
+  @Render('admin/partner/index')
+  getPartner(@Query('page') page: string) {
+    return this.adminService.getPartner(page);
+  }
+
+  @Get('partner/edit')
+  @UseGuards(AuthGuard)
+  @Render('admin/partner/edit/index')
+  getEditPartner(@Query('id') id: string) {
+    return this.adminService.getDetailPartner(id);
+  }
+
+  @Get('partner/add')
+  @UseGuards(AuthGuard)
+  @Render('admin/partner/add/index')
+  async getAddPartner() {
+    return { customers: await this.adminService.getAddPartner() };
+  }
+
+  @Post('partner')
   @UseInterceptors(FileInterceptor('file'))
   @UseGuards(AuthGuard)
   async postPartner(
     @Body() body: InputSetPartner,
     @Res() res: Response,
     @UploadedFile() logo: Express.Multer.File,
-  ){
-    if(logo) body.logo = logo;
+  ) {
+    if (logo) body.logo = logo;
     const partner = await this.adminService.setPartner(body);
     res.redirect(`/admin/partner/edit?id=${partner.id}`);
-    return partner
-  }
-  @Delete('product/:projectID')
-  @Redirect('/admin/product')
-  deleteProject(@Param('projectID') projectID: string) {
-    return this.adminService.deleteProject(projectID);
-  }
-
-  @Delete('category/:id')
-  @Redirect('/admin/category')
-  deleteCategory(@Param('id') id: string) {
-    return this.adminService.deleteCategory(id);
-  }
-
-  @Delete('customer/:id')
-  @Redirect('/admin/customer')
-  deleteCustomer(@Param('id') id: string) {
-    return this.adminService.deleteCustomer(id);
+    return partner;
   }
 
   @Delete('partner/:id')
+  @UseGuards(AuthGuard)
   @Redirect('/admin/partner')
-  deletePartner(@Param('id') id: string){
+  deletePartner(@Param('id') id: string) {
     return this.adminService.deletePartner(id);
   }
+
+  // Department
+
+  @Get('department')
+  @UseGuards(AuthGuard)
+  @Render('admin/department/index')
+  getDepartment(@Query('page') page: string) {
+    return this.adminService.getDepartment(page);
+  }
+
+  @Get('department/edit')
+  @UseGuards(AuthGuard)
+  @Render('admin/department/edit/index')
+  async getEditDepartment(@Query('id') id: string) {
+    return {department: await this.adminService.getDetailDepartment(id)};
+  }
+
+  @Get('department/add')
+  @UseGuards(AuthGuard)
+  @Render('admin/department/add/index')
+  async getAddDepartment() {}
+
+  @Post('department')
+  @UseInterceptors(FileInterceptor('file'))
+  @UseGuards(AuthGuard)
+  async postDepartment(
+    @Body() body: InputSetDepartment,
+    @Res() res: Response,
+    @UploadedFile() logo: Express.Multer.File,
+  ) {
+    if (logo) body.logo = logo;
+    const department = await this.adminService.setDepartment(body);
+    res.redirect(`/admin/department/edit?id=${department.id}`);
+    return department;
+  }
+
+  @Delete('department/:id')
+  @UseGuards(AuthGuard)
+  @Redirect('/admin/department')
+  deleteDepartment(@Param('id') id: string) {
+    return this.adminService.deleteDepartment(id);
+  }
+  
+  // Login
 
   @Post('login')
   @Redirect('/admin/home')

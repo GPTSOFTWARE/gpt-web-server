@@ -96,7 +96,7 @@ export class ProductService extends BaseService<Product> {
           ['png', 'jpg', 'webp'],
           product.banner,
         )
-      : null;
+      : product.banner;
     _.forEach(input, (value, key) => {
       if (key === 'banner') product.banner = banner;
       else if (key !== 'id') value && (product[key] = value);

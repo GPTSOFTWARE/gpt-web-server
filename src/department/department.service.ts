@@ -16,33 +16,51 @@ export class DepartmentService extends BaseService<Department> {
     super(repo);
   }
 
-  getAll(options: FindManyOptions<Department>) {
+  getAll(options?: FindManyOptions<Department>) {
     return this.repo.find(options);
   }
 
-  get(id: string, options: FindOneOptions<Department>) {
+  get(id: string, options?: FindOneOptions<Department>) {
     return this.findById(id, options);
   }
 
   async create(input: InputSetDepartment) {
     const aboutUs = await this.aboutUsService.get();
+    const logo = input.logo
+      ? this.handleUploadFile(input.logo, 'img/department/logo', [
+          'png',
+          'jpg',
+          'webp',
+        ])
+      : null;
 
-    const department = this.repo.create({ ...input, aboutUs });
+    const department = this.repo.create({ ...input, aboutUs, logo });
 
     return this.repo.save(department);
   }
 
   async update(input: InputSetDepartment) {
     const department = await this.findById(input.id);
+    const logo = input.logo
+      ? this.handleUploadFile(
+          input.logo,
+          'img/department/logo',
+          ['png', 'jpg', 'webp'],
+          department.logo,
+        )
+      : department.logo;
 
     _.forEach(input, (value, key) => {
-      if (value && key !== 'id') department[key] = value;
+      if (key === 'logo') department.logo = logo;
+      else if (value && key !== 'id') department[key] = value;
     });
 
     return this.repo.save(department);
   }
 
   async delete(id: string) {
-    return !!(await this.deleteOneById(id));
+    const department = await this.findById(id);
+    department.logo && this.clearFile(department.logo);
+    return !!(await this.repo.delete(id));
   }
 }

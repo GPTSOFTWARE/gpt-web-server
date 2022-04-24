@@ -5,6 +5,7 @@ import { AboutUsModule } from 'src/aboutUs/aboutUs.module';
 import { CommonModule } from 'src/common/common.module';
 import { storage } from 'src/common/utils/multer.config';
 import { CustomerModule } from 'src/customer/ customer.module';
+import { DepartmentModule } from 'src/department/department.module';
 import { HomeModule } from 'src/home/home.module';
 import { PartnerModule } from 'src/partner/partner.module';
 import { ProductModule } from 'src/product/product.module';
@@ -23,6 +24,7 @@ import { AdminService } from './admin.service';
     ProjectModule,
     CustomerModule,
     PartnerModule,
+    DepartmentModule,
     MulterModule.register({ storage }),
   ],
   controllers: [AdminController],
