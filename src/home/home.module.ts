@@ -10,6 +10,6 @@ import { HomeService } from './home.service';
   imports: [ContactModule, ProductModule, TypeOrmModule.forFeature([Home])],
   controllers: [HomeController],
   providers: [HomeService],
-  exports: [HomeService]
+  exports: [HomeService],
 })
 export class HomeModule {}

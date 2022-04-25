@@ -1,4 +1,9 @@
-import { BadRequestException, forwardRef, Inject, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  forwardRef,
+  Inject,
+  Injectable,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BaseService } from 'src/common/services/base.service';
 import { FindManyOptions, FindOneOptions, Repository } from 'typeorm';
@@ -15,7 +20,8 @@ export class ProductService extends BaseService<Product> {
     @InjectRepository(Product) repo: Repository<Product>,
     private contactService: ContactService,
     private projectService: ProjectService,
-    @Inject(forwardRef(() => AboutUsService)) private aboutUsService: AboutUsService
+    @Inject(forwardRef(() => AboutUsService))
+    private aboutUsService: AboutUsService,
   ) {
     super(repo);
   }
@@ -76,7 +82,7 @@ export class ProductService extends BaseService<Product> {
     const product = this.repo.create({
       ...input,
       banner,
-      aboutUs
+      aboutUs,
     });
     return this.repo.save(product);
   }
@@ -90,7 +96,7 @@ export class ProductService extends BaseService<Product> {
           ['png', 'jpg', 'webp'],
           product.banner,
         )
-      : null;
+      : product.banner;
     _.forEach(input, (value, key) => {
       if (key === 'banner') product.banner = banner;
       else if (key !== 'id') value && (product[key] = value);

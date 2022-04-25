@@ -5,6 +5,6 @@ export type InputSetProject = {
   banner?: Express.Multer.File;
   productID?: string;
   partnerID?: string;
-  utility: string[]
-  feature: string[]
+  utility: string[];
+  feature: string[];
 };

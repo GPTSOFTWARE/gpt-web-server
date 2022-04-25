@@ -19,7 +19,7 @@ export class CustomerService extends BaseService<Customer> {
     super(repo);
   }
 
-  async getAll() {
+  async getPage() {
     const [customers, contact, partners] = await Promise.all([
       this.repo.find(),
       this.contactService.get(),
@@ -30,6 +30,10 @@ export class CustomerService extends BaseService<Customer> {
 
   get(id: string, options?: FindOneOptions<Customer>) {
     return this.findById(id, options);
+  }
+
+  getAll() {
+    return this.repo.find();
   }
 
   create(input: InputSetCustomer) {
@@ -58,18 +62,18 @@ export class CustomerService extends BaseService<Customer> {
           ['jpg', 'png', 'webp'],
           customer.logo,
         )
-      : null;
+      : customer.logo;
 
     _.forOwn(input, (value, key) => {
       if (key === 'logo') customer.logo = logo;
-      else if (key !== 'id') value && (customer[key] = value);
+      else if (key !== 'id') customer[key] = value;
     });
 
     return this.repo.save(customer);
   }
 
   async delete(id: string) {
-    const customer = await this.findById(id, { select: ['logo'] });
+    const customer = await this.findById(id);
     customer.logo && this.clearFile(customer.logo);
     return !!(await this.repo.delete(id));
   }

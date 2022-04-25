@@ -12,7 +12,7 @@ export class Department extends BaseEntity {
   @OneToMany(() => Career, (career) => career.department)
   careers: Career[];
 
-  @Column()
+  @Column({ nullable: true })
   logo: string;
 
   @Column()

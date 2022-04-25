@@ -19,7 +19,7 @@ export class CustomerController {
   @Get()
   @Render('customer/index')
   get() {
-    return this.customerService.getAll();
+    return this.customerService.getPage();
   }
 
   @Post()

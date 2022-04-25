@@ -12,7 +12,7 @@ async function bootstrap() {
   app.setBaseViewsDir(viewsFolder);
   app.useStaticAssets(staticFolder);
   app.setViewEngine('ejs');
-  app.use(cookieParser())
+  app.use(cookieParser());
 
   app.useGlobalFilters(new HttpExceptionFilter());
 

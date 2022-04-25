@@ -11,7 +11,7 @@ export class Personnel extends BaseEntity {
   @Column()
   name: string;
 
-  @Column()
+  @Column({ nullable: true })
   img: string;
 
   @Column()
