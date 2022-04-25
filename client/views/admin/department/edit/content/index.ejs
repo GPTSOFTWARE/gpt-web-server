@@ -7,11 +7,11 @@
         </div>
         <div class="mb-3">
             <div class="mb-2">
-                <label for="Image" class="form-label">Banner</label>
-                <input class="form-control" type="file" id="formFile" onchange="preview()" name="file" required>
+                <label for="Image" class="form-label">Logo</label>
+                <input class="form-control" type="file" id="formFile" onchange="preview()" name="file" required data-focus="logo-department">
                 <div onclick="clearImage()" class="btn btn-primary mt-3">Click me</div>
             </div>
-            <img id="frame" src="<%= logo %>" class="img-fluid" />
+            <img id="logo-department" src="<%= logo %>" class="img-fluid" />
         </div>
         <div class="mb-3">
             <label class="form-label">Name</label>

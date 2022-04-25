@@ -8,7 +8,7 @@ ul{
     background-color: #000;
 }
 .img-cotainer{
-    background-image:url(../../img/Background.jpg) ;
+    background-image:url('/img/banner/bannerPage.jpg') ;
     background-size: cover;
     background-repeat: no-repeat;
     height:790px;

@@ -337,6 +337,54 @@ export class AdminController {
     return this.adminService.deletePersonnel(id);
   }
 
+  // Update Logo
+
+  @Get('logo')
+  @UseGuards(AuthGuard)
+  @Render('admin/logo/index')
+  getLogo(){}
+
+  @Post('logo')
+  @Redirect('/admin/logo')
+  @UseGuards(AuthGuard)
+  @UseInterceptors(FileInterceptor('file'))
+  updateLogo(@UploadedFile() logo: Express.Multer.File) {
+    if(logo) {
+      return this.adminService.updateLogo(logo)
+    }
+    return {}
+  }
+
+  // Update Banner
+  @Get('banner')
+  @UseGuards(AuthGuard)
+  @Render('admin/banner/index')
+  getBanner() {}
+
+  @Post('banner/home')
+  @Redirect('/admin/banner')
+  @UseGuards(AuthGuard)
+  @UseInterceptors(FileInterceptor('file'))
+  updateBannerHome(@UploadedFile() banner: Express.Multer.File) {
+    if(banner) {
+      return this.adminService.updateBannerHome(banner)
+    }
+
+    return {}
+  }
+
+  @Post('banner/page')
+  @Redirect('/admin/banner')
+  @UseGuards(AuthGuard)
+  @UseInterceptors(FileInterceptor('file'))
+  updateBannerPage(@UploadedFile() banner: Express.Multer.File) {
+    if(banner) {
+      return this.adminService.updateBannerPage(banner)
+    }
+
+    return {}
+  }
+
   // Login
 
   @Post('login')

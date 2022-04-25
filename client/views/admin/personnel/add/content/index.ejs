@@ -3,11 +3,11 @@
     <form action="/admin/personnel" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <div class="mb-2">
-                <label for="Image" class="form-label">Logo</label>
-                <input class="form-control" type="file" id="formFile" onchange="preview()" name="file">
+                <label for="Image" class="form-label">Image</label>
+                <input class="form-control" type="file" id="formFile" onchange="preview()" name="file" data-focus="image-leader-add">
                 <div onclick="clearImage()" class="btn btn-primary mt-3">Click me</div>
             </div>
-            <img id="frame" src="" class="img-fluid" />
+            <img id="image-leader-add" src="" class="img-fluid" />
         </div>
         <div class="mb-3">
             <label class="form-label">Name</label>

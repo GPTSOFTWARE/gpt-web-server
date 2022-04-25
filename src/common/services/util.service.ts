@@ -20,14 +20,26 @@ export class UtilService {
     }
   }
 
+  updateFile(file: Express.Multer.File, oldFile: string) {
+    const readStream = createReadStream(file.path)
+    this.checkExist(oldFile) && this.clearFile(oldFile);
+    const writeSteam = createWriteStream(join(staticFolder, oldFile))
+
+    readStream.pipe(writeSteam)
+
+    this.clearTmp(file.path)
+
+    return `/${oldFile}`
+  }
+
   uploadFile(file: Express.Multer.File, folder = '', oldFile?: string) {
     const path = `${folder}/${file.filename}`;
     const readStream = createReadStream(file.path);
-    if (!existsSync(join(staticFolder, folder))) {
+    if (!this.checkExist(folder)) {
       mkdirSync(join(staticFolder, folder));
     }
 
-    oldFile && this.clearFile(oldFile);
+    this.checkExist(oldFile) && this.clearFile(oldFile);
 
     const writeSteam = createWriteStream(join(staticFolder, path));
 
@@ -36,6 +48,10 @@ export class UtilService {
     this.clearTmp(file.path);
 
     return `/${path}`;
+  }
+  
+  checkExist(path: string): boolean {
+    return path && existsSync(join(staticFolder, path))
   }
 
   clearTmp(tmpPath: string) {

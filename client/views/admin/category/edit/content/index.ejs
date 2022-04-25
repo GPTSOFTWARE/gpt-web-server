@@ -8,10 +8,10 @@
         <div class="mb-3">
             <div class="mb-2">
                 <label for="Image" class="form-label">Banner</label>
-                <input class="form-control" type="file" id="formFile" onchange="preview()" name="file">
+                <input class="form-control" type="file" id="formFile" onchange="preview()" name="file" data-focus="banner-category">
                 <div onclick="clearImage()" class="btn btn-primary mt-3">Click me</div>
             </div>
-            <img id="frame" src="<%= banner %>" class="img-fluid" />
+            <img id="banner-category" src="<%= banner %>" class="img-fluid" />
         </div>
         <div class="mb-3">
             <label class="form-label">Name</label>

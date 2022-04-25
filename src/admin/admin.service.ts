@@ -233,6 +233,22 @@ export class AdminService extends BaseService<Admin> {
 
   // logo
 
+  updateLogo(file: Express.Multer.File) {
+    return this.updateFile(file, "img/logo/logo.png")
+  }
+
+  // banner
+
+  updateBannerHome(file: Express.Multer.File) {
+    return this.updateFile(file, "img/banner/bannerHome.jpg")
+  }
+
+  updateBannerPage(file: Express.Multer.File) {
+    return this.updateFile(file, "img/banner/bannerPage.jpg")
+  }
+
+  // login
+
   async login(input: InputSetLogin) {
     const admin = await this.repo.findOne({ username: input.username });
 

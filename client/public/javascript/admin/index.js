@@ -27,10 +27,15 @@ btn_delete.forEach((btn) => {
     })
 })
 
+let frame;
+let form;
+
 function preview() {
+    frame = document.getElementById(event.target.getAttribute("data-focus"));
+    form = event.target;
     frame.src = URL.createObjectURL(event.target.files[0]);
 }
 function clearImage() {
-    document.getElementById('formFile').value = null;
+    form.value = null;
     frame.src = "";
 }
