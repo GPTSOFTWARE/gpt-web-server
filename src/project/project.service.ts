@@ -79,7 +79,7 @@ export class ProjectService extends BaseService<Project> {
     const banner = input.banner
       ? this.handleUploadFile(
           input.banner,
-          '/img/project/banner',
+          'img/project/banner',
           ['png', 'jpg', 'webp'],
           project.banner,
         )
