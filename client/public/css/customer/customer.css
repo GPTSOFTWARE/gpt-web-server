@@ -1,3 +1,5 @@
+@import url("./protential-customer.css");
+
 *{
     box-sizing: border-box;
 }
@@ -5,10 +7,6 @@ body{
     margin: 0;
 }
 
-.customers {
-    max-width: 1420px;
-    margin: 0 auto;
-}
 .protential{
     display: flex;
     flex-flow: wrap;
@@ -31,27 +29,6 @@ body{
     padding-bottom: 10px;
     color: white;
     text-align: center;
-}
-.card-customer{
-    max-width: 330px;
-    border-radius: 12px;
-    align-items: center;
-    background-color: white;
-    margin: 15px 10px;
-}
-.card-customer-img{
-    width: 330px;
-    height: 200px;
-}
-
-.card-customer-name{
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 24px;
-    line-height: 36px;
-    text-align: center;
-    padding: 20px 20px;
 }
 
 .partners {
@@ -130,13 +107,6 @@ body{
 }
 
 @media screen and (max-width: 400px) {
-    .card-customer{
-        max-width: 250px;
-    }
-    .card-customer-img{
-        width: 250px;
-        height: 150px;
-    }
 
     .partner-img{
         width: 250px;
