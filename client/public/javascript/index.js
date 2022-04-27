@@ -48,3 +48,30 @@ const menu = document.querySelectorAll(".nav-menu .menu-list")[0];
 responsive_btn.addEventListener("click", () => {
     menu.classList.toggle("nav-menu-display")
 })
+
+$(document).ready(function () {
+    $('.image-slider').slick({
+        slidesToShow: 3,
+        infinite: true,
+        arrow: true,
+        prevArrow: `<button type='button' class='slick-prev slick-arrow'><i class="fa-solid fa-angle-left"></i></button>`,
+        nextArrow: `<button type='button' class='slick-next slick-arrow'><i class="fa-solid fa-angle-right"></i></button>`,
+        autoplay: true,
+        autoplaySpeed: 1000,
+        responsive: [
+            {
+                breakpoint: 1300,
+                settings: {
+                    slidesToShow: 2
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: false,
+                }
+            }
+        ]
+    });
+});

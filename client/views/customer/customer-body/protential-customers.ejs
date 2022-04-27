@@ -1,13 +1,15 @@
-<div class="customers">
-    <h1 class="category-cus">PROTENTIAL CUSTOMERS</h1>
-    <div class="protential">
-        <% for(let i = 0; i < customers.length; i++) { %>
-            <div class="card-customer">
-                <img src="<%= customers[i].logo %> " alt="" class="card-customer-img">
-                <div class="card-customer-name">
-                    <%= customers[i].name %>
+<div class="slide-customer">
+    <div class="slide-potenial">
+        <h2 class="potenial-title">POTENTIAL CUSTOMERS</h2>
+        <div class="image-slider">
+            <% customers.forEach(customer => { %>
+                <div class="image-slide">
+                    <div class="image">          
+                        <a href="#"><img src="<%= customer.logo %> " alt=""></a>
+                    </div>
+                    <h3 class="image-title"><%= customer.name %> </h3>
                 </div>
-            </div>
-        <% } %>  
+            <% }) %>
+        </div>
     </div>
 </div>
