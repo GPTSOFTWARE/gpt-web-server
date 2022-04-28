@@ -6,6 +6,8 @@ import { AboutUsService } from 'src/aboutUs/aboutUs.service';
 import { BaseService } from 'src/common/services/base.service';
 import { CacheService } from 'src/common/services/cache.service';
 import { TokenService } from 'src/common/services/token.service';
+import { InputSetContact } from 'src/contact/contact.model';
+import { ContactService } from 'src/contact/contact.service';
 import { InputSetCustomer } from 'src/customer/customer.model';
 import { CustomerService } from 'src/customer/customer.service';
 import { InputSetDepartment } from 'src/department/department.model';
@@ -39,6 +41,7 @@ export class AdminService extends BaseService<Admin> {
     private partnerService: PartnerService,
     private departmentService: DepartmentService,
     private personnelService: PersonnelService,
+    private contactService: ContactService
   ) {
     super(repo);
     this.bcrypt = bcrypt;
@@ -245,6 +248,16 @@ export class AdminService extends BaseService<Admin> {
 
   updateBannerPage(file: Express.Multer.File) {
     return this.updateFile(file, "img/banner/bannerPage.jpg")
+  }
+
+  // Contact
+
+  getContact() {
+    return this.contactService.get();
+  }
+
+  setContact(input: InputSetContact) {
+    return this.contactService.update(input)
   }
 
   // login

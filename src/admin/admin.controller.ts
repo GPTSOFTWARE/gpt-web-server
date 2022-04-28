@@ -17,6 +17,7 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Response } from 'express';
 import { InputSetAboutUs } from 'src/aboutUs/aboutUs.model';
 import { AuthGuard } from 'src/common/guard/auth.guard';
+import { InputSetContact } from 'src/contact/contact.model';
 import { InputSetCustomer } from 'src/customer/customer.model';
 import { InputSetDepartment } from 'src/department/department.model';
 import { InputSetHome } from 'src/home/home.model';
@@ -383,6 +384,22 @@ export class AdminController {
     }
 
     return {}
+  }
+
+  // Contact
+
+  @Get('contact')
+  @Render('admin/contact/index')
+  @UseGuards(AuthGuard)
+  getContact() {
+    return this.adminService.getContact()
+  }
+
+  @Post('contact')
+  @Redirect('/admin/contact')
+  @UseGuards(AuthGuard)
+  postContact(@Body() body: InputSetContact) {
+    return this.adminService.setContact(body)
   }
 
   // Login
