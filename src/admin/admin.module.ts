@@ -4,6 +4,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AboutUsModule } from 'src/aboutUs/aboutUs.module';
 import { CommonModule } from 'src/common/common.module';
 import { storage } from 'src/common/utils/multer.config';
+import { ContactModule } from 'src/contact/contact.module';
 import { CustomerModule } from 'src/customer/ customer.module';
 import { DepartmentModule } from 'src/department/department.module';
 import { HomeModule } from 'src/home/home.module';
@@ -27,6 +28,7 @@ import { AdminService } from './admin.service';
     PartnerModule,
     DepartmentModule,
     PersonnelModule,
+    ContactModule,
     MulterModule.register({ storage }),
   ],
   controllers: [AdminController],

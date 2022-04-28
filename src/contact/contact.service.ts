@@ -13,14 +13,14 @@ export class ContactService extends BaseService<Contact> {
   }
 
   get(options?: FindOneOptions<Contact>): Promise<Contact> {
-    return this.findById('1', options);
+    return this.repo.findOne(options);
   }
 
   async update(input: InputSetContact) {
-    const contact = await this.findById('1');
+    const contact = await this.repo.findOne();
 
     _.forEach(input, (value, key) => {
-      value && (contact[key] = value);
+      (contact[key] = value);
     });
 
     return this.repo.save(contact);
