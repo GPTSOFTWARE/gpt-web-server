@@ -51,7 +51,7 @@ responsive_btn.addEventListener("click", () => {
 
 $(document).ready(function () {
     $('.image-slider').slick({
-        slidesToShow: 4,
+        slidesToShow: 3,
         infinite: true,
         arrow: true,
         prevArrow: `<button type='button' class='slick-prev slick-arrow'><i class="fa-solid fa-angle-left"></i></button>`,
@@ -83,7 +83,6 @@ $(document).ready(function() {
         infinite: true,
         arrows: true,
         autoplay: true,
-        draggable: false,
         prevArrow: `<button type='button' class='slick-prev slick-arrow'><i class="fa-solid fa-angle-left"></i></button>`,
         nextArrow: `<button type='button' class='slick-next slick-arrow'><i class="fa-solid fa-angle-right"></i></button>`,
         dots: true,
@@ -103,6 +102,7 @@ $(document).ready(function() {
                 breakpoint: 510,
                 settings: {
                     slidesToShow: 1,
+                    arrows: false
                 },
             },
         ],
@@ -113,8 +113,9 @@ $(document).ready(function() {
 $(document).ready(function() {
     $('.support_product .product').slick({
         slidesToShow: 3,
+        slidesToScroll: 1,
         infinite: true,
-        arrow: true,
+        arrows: true,
         prevArrow: `<button type='button' class='slick-prev slick-arrow'><i class="fa-solid fa-angle-left"></i></button>`,
         nextArrow: `<button type='button' class='slick-next slick-arrow'><i class="fa-solid fa-angle-right"></i></button>`,
         autoplay: true,
@@ -132,6 +133,7 @@ $(document).ready(function() {
                     arrows: false
                 },
             },
+
         ]
     });
 });

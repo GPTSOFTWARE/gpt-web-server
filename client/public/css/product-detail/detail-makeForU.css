@@ -45,23 +45,18 @@ button {
 
 .support_product {
     background-color: #000;
-    padding: 50px 0;
 }
 
 .support_product .product {
-    margin-top: 20px;
+    max-width: 1336px;
+    margin: 0 auto;
+    padding: 50px;
 }
 
 /*Cac the image-item  */
 
-.support_product .slide-potenial .item-utility{
-    background: white;
-    max-width: 360px;
-    height: 200px;
-}
-
 .support_product .slide-potenial .item-utility {
-    display: flex !important;
+    display: flex;
     flex-direction: row;
     background: white;
     color: black;
@@ -81,7 +76,7 @@ button {
     color: #FFF;
     font-size: 48px;
     text-align: center;
-    margin-bottom: 120px;
+    /* margin-bottom: 120px; */
     text-decoration: underline;
 }
 
@@ -120,9 +115,15 @@ button {
     border-radius: 10px;
 }
 
+@media screen and (min-width: 510px) and (max-width: 767px) {
+    .support_product .product {
+        max-width: 400px;
+        padding: 0;
+    }
+}
 
-/* image item ten class trong th vien */
-
-.slick-initialized .slick-slide {
-    margin: 0 50px;
+@media screen and (max-width: 519px) {
+    .support_product .product {
+        padding: 0;
+    }
 }
