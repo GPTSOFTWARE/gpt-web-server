@@ -51,7 +51,7 @@ responsive_btn.addEventListener("click", () => {
 
 $(document).ready(function () {
     $('.image-slider').slick({
-        slidesToShow: 3,
+        slidesToShow: 4,
         infinite: true,
         arrow: true,
         prevArrow: `<button type='button' class='slick-prev slick-arrow'><i class="fa-solid fa-angle-left"></i></button>`,
@@ -72,6 +72,66 @@ $(document).ready(function () {
                     arrows: false,
                 }
             }
+        ]
+    });
+});
+
+$(document).ready(function() {
+    $(".product_feature").slick({
+        slidesToShow: 4,
+        slidesToScroll: 1,
+        infinite: true,
+        arrows: true,
+        autoplay: true,
+        draggable: false,
+        prevArrow: `<button type='button' class='slick-prev slick-arrow'><i class="fa-solid fa-angle-left"></i></button>`,
+        nextArrow: `<button type='button' class='slick-next slick-arrow'><i class="fa-solid fa-angle-right"></i></button>`,
+        dots: true,
+        responsive: [{
+                breakpoint: 1300,
+                settings: {
+                    slidesToShow: 3,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: 510,
+                settings: {
+                    slidesToShow: 1,
+                },
+            },
+        ],
+    });
+
+});
+
+$(document).ready(function() {
+    $('.support_product .product').slick({
+        slidesToShow: 3,
+        infinite: true,
+        arrow: true,
+        prevArrow: `<button type='button' class='slick-prev slick-arrow'><i class="fa-solid fa-angle-left"></i></button>`,
+        nextArrow: `<button type='button' class='slick-next slick-arrow'><i class="fa-solid fa-angle-right"></i></button>`,
+        autoplay: true,
+        autoplaySpeed: 1000,
+        responsive: [{
+                breakpoint: 1300,
+                settings: {
+                    slidesToShow: 2,
+                },
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 1,
+                    arrows: false
+                },
+            },
         ]
     });
 });
