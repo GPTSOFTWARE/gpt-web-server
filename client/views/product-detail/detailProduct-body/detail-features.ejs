@@ -1,11 +1,13 @@
 <div class="features-function">
     <h3 class="title-features">Featured Functions</h3>
-    <div class="products">
+    <div class="product_feature">
         <% for( let i = 0; i < feature.length; i++ ) { %>
-            <div class="card-prduct">
-                <img src="/img/project/banner/feature.jpg" alt="" class="card-product-img">
-                <div class="card-name">
-                    <%= feature[i] %> 
+            <div class="image-item">
+                <div class="circle"><%= i + 1 %> </div>
+                <div class="image">
+                    <div class="ctn-text">
+                        <h3><%= feature[i] %></h3>
+                    </div>
                 </div>
             </div>
         <% } %>
